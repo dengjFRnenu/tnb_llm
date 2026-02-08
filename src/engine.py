@@ -5,22 +5,28 @@ GraphRAG Retrieval Engine - 统一检索接口
 整合混合检索、Reranker、Text-to-Cypher 和 Context Fusion
 """
 
-from hybrid_retriever import HybridRetriever
-from reranker import BGEReranker
-from text_to_cypher import TextToCypherEngine
-from context_fusion import ContextFusion
+import os
+from pathlib import Path
 from typing import Dict, Optional, Callable
 import re
+
+from .retrieval.hybrid import HybridRetriever
+from .retrieval.reranker import BGEReranker
+from .retrieval.fusion import ContextFusion
+from .graph.text_to_cypher import TextToCypherEngine
+
+# 项目根目录
+PROJECT_ROOT = Path(__file__).parent.parent
 
 
 class GraphRAGEngine:
     """GraphRAG 检索引擎 - 核心总控"""
     
     def __init__(self, 
-                 chroma_path: str = "./chroma_db",
+                 chroma_path: str = None,
                  collection_name: str = "diabetes_guidelines_2024",
-                 schema_path: str = "schema.json",
-                 examples_path: str = "text_to_cypher_examples.json",
+                 schema_path: str = None,
+                 examples_path: str = None,
                  neo4j_uri: str = "bolt://localhost:7687",
                  neo4j_user: str = "neo4j",
                  neo4j_password: str = "password123"):
@@ -36,6 +42,14 @@ class GraphRAGEngine:
             neo4j_user: Neo4j 用户名
             neo4j_password: Neo4j 密码
         """
+        # 使用默认路径（相对于项目根目录）
+        if chroma_path is None:
+            chroma_path = str(PROJECT_ROOT / "chroma_db")
+        if schema_path is None:
+            schema_path = str(PROJECT_ROOT / "configs" / "schema.json")
+        if examples_path is None:
+            examples_path = str(PROJECT_ROOT / "configs" / "few_shot_examples.json")
+
         print("\n" + "="*60)
         print("🚀 初始化 GraphRAG 检索引擎")
         print("="*60 + "\n")

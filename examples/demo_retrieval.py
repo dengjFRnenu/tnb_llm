@@ -5,8 +5,14 @@ GraphRAG 系统交互式 Demo
 演示混合检索、Rerank 和 Text-to-Cypher 的完整流程
 """
 
-from retrieval_engine import GraphRAGEngine
 import sys
+from pathlib import Path
+
+# 添加项目根目录到路径
+PROJECT_ROOT = Path(__file__).parent.parent
+sys.path.insert(0, str(PROJECT_ROOT))
+
+from src.engine import GraphRAGEngine
 
 
 def print_header(text):

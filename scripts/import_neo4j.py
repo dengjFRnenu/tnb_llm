@@ -208,12 +208,15 @@ def main():
     NEO4J_URI = "bolt://localhost:7687"
     NEO4J_USER = "neo4j"
     NEO4J_PASSWORD = "password123"  # 默认密码,请根据实际修改
-    CYPHER_FILE = "import_graph.cypher"
+    
+    # 项目根目录
+    PROJECT_ROOT = Path(__file__).parent.parent
+    CYPHER_FILE = PROJECT_ROOT / "data" / "neo4j" / "import_graph.cypher"
     
     # 检查文件是否存在
-    if not Path(CYPHER_FILE).exists():
+    if not CYPHER_FILE.exists():
         print(f"❌ 错误: 找不到文件 {CYPHER_FILE}")
-        print("请先运行 generate_cypher.py 生成Cypher脚本")
+        print("请先运行 src/graph/cypher_generator.py 生成Cypher脚本")
         return
     
     # 连接Neo4j

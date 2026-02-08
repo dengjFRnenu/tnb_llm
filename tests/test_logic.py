@@ -5,6 +5,12 @@
 """
 
 import json
+import os
+from pathlib import Path
+
+# 项目根目录
+PROJECT_ROOT = Path(__file__).parent.parent
+CONFIGS_DIR = PROJECT_ROOT / "configs"
 
 
 def test_cypher_security():
@@ -101,7 +107,7 @@ def test_few_shot_examples():
     print("测试 3: Few-shot 示例质量检查")
     print("="*60)
     
-    with open('text_to_cypher_examples.json', 'r', encoding='utf-8') as f:
+    with open(CONFIGS_DIR / 'few_shot_examples.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
     
     examples = data['examples']
@@ -143,7 +149,7 @@ def test_schema_completeness():
     print("测试 4: Schema 完整性检查")
     print("="*60)
     
-    with open('schema.json', 'r', encoding='utf-8') as f:
+    with open(CONFIGS_DIR / 'schema.json', 'r', encoding='utf-8') as f:
         schema = json.load(f)
     
     # 检查关键节点
