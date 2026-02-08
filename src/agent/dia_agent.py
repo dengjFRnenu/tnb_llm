@@ -185,9 +185,9 @@ class DiaAgent:
                 queries.append("糖尿病合并心血管疾病用药")
         
         all_results = []
-        for q in queries[:3]:  # 最多3个查询
+        for q in queries[:2]:  # 最多2个查询（优化：减少查询次数）
             self._log(f"  🔍 查询: {q[:40]}...")
-            results = self.hybrid_retriever.retrieve(q, top_k=5)
+            results = self.hybrid_retriever.retrieve(q, top_k=3)  # 优化：减少候选数
             all_results.extend(results)
         
         # 去重
@@ -199,10 +199,11 @@ class DiaAgent:
                 seen.add(doc_id)
                 unique_results.append(r)
         
-        # Rerank
+        # Rerank（优化：限制最大候选数为5）
         if unique_results:
+            unique_results = unique_results[:5]  # 限制 Rerank 输入数量
             self._log(f"  📊 Rerank {len(unique_results)} 篇文档...")
-            reranked = self.reranker.rerank(query, unique_results, top_k=top_k)
+            reranked = self.reranker.rerank(query, unique_results, top_k=min(top_k, 2))
             
             # 合并内容
             context_parts = []

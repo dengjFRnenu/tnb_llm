@@ -21,7 +21,7 @@ load_dotenv()
 
 
 # ============================================
-# 全局变量 - 延迟加载
+# 全局变量 - 预加载（启动时加载一次）
 # ============================================
 
 _agent = None
@@ -29,7 +29,7 @@ _llm_api = None
 
 
 def get_agent():
-    """延迟加载 Agent（避免启动时加载模型）"""
+    """获取 Agent 单例（预加载模式）"""
     global _agent, _llm_api
     
     if _agent is None:
@@ -39,7 +39,7 @@ def get_agent():
         # 创建 LLM API
         _llm_api = create_llm_api('siliconflow')
         
-        # 创建 Agent
+        # 创建 Agent（模型只加载一次）
         _agent = DiaAgent(llm_api=_llm_api, verbose=False)
     
     return _agent
