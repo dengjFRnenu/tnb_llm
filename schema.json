@@ -1,0 +1,234 @@
+{
+  "description": "糖尿病专病知识图谱 Schema - Dia-Agent",
+  "version": "1.0",
+  "nodes": {
+    "Drug": {
+      "description": "降糖药物节点",
+      "label": "药品",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "药品通用名",
+          "required": true,
+          "example": "二甲双胍"
+        },
+        "max_daily_dose": {
+          "type": "float",
+          "description": "最大日剂量(mg)",
+          "required": false,
+          "example": 2000.0
+        },
+        "mechanism": {
+          "type": "string",
+          "description": "作用机制描述",
+          "required": false,
+          "example": "抑制肝脏葡萄糖输出，增加外周组织对葡萄糖的摄取"
+        },
+        "indications": {
+          "type": "string",
+          "description": "适应症",
+          "required": false
+        }
+      }
+    },
+    "Brand": {
+      "description": "药品商品名节点",
+      "label": "商品名",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "商品名称",
+          "required": true,
+          "example": "格华止"
+        }
+      }
+    },
+    "Category": {
+      "description": "药物分类节点",
+      "label": "药物类别",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "分类名称",
+          "required": true,
+          "example": "双胍类"
+        },
+        "description": {
+          "type": "string",
+          "description": "分类说明",
+          "required": false
+        }
+      }
+    },
+    "Disease": {
+      "description": "疾病/症状节点",
+      "label": "疾病",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "疾病名称",
+          "required": true,
+          "example": "心力衰竭"
+        },
+        "icd_code": {
+          "type": "string",
+          "description": "ICD-10编码",
+          "required": false
+        }
+      }
+    },
+    "Metric": {
+      "description": "临床指标节点",
+      "label": "临床指标",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "指标名称",
+          "required": true,
+          "example": "eGFR"
+        },
+        "unit": {
+          "type": "string",
+          "description": "单位",
+          "required": false,
+          "example": "mL/min/1.73m²"
+        },
+        "normal_range": {
+          "type": "string",
+          "description": "正常参考范围",
+          "required": false,
+          "example": "≥90"
+        }
+      }
+    }
+  },
+  "relationships": {
+    "BELONGS_TO": {
+      "description": "药品属于某个分类",
+      "source": "Drug",
+      "target": "Category",
+      "properties": {},
+      "example": "(二甲双胍)-[:BELONGS_TO]->(双胍类)"
+    },
+    "HAS_BRAND": {
+      "description": "药品的商品名",
+      "source": "Drug",
+      "target": "Brand",
+      "properties": {},
+      "example": "(二甲双胍)-[:HAS_BRAND]->(格华止)"
+    },
+    "CONTRAINDICATED_IF": {
+      "description": "指标禁忌关系（当某个指标达到特定阈值时禁用）",
+      "source": "Drug",
+      "target": "Metric",
+      "properties": {
+        "operator": {
+          "type": "string",
+          "description": "比较运算符",
+          "enum": ["<", "<=", ">", ">=", "="],
+          "example": "<"
+        },
+        "value": {
+          "type": "float",
+          "description": "阈值",
+          "example": 30.0
+        },
+        "severity": {
+          "type": "string",
+          "description": "严重程度",
+          "enum": ["绝对禁忌", "相对禁忌", "谨慎使用"],
+          "example": "绝对禁忌"
+        },
+        "note": {
+          "type": "string",
+          "description": "额外说明",
+          "required": false
+        }
+      },
+      "example": "(二甲双胍)-[:CONTRAINDICATED_IF {operator: '<', value: 30, severity: '绝对禁忌'}]->(eGFR)"
+    },
+    "FORBIDDEN_FOR": {
+      "description": "疾病禁忌关系（患有某种疾病时禁用）",
+      "source": "Drug",
+      "target": "Disease",
+      "properties": {
+        "severity": {
+          "type": "string",
+          "description": "严重程度",
+          "enum": ["绝对禁忌", "相对禁忌", "谨慎使用"],
+          "example": "绝对禁忌"
+        },
+        "reason": {
+          "type": "string",
+          "description": "禁忌原因",
+          "required": false
+        }
+      },
+      "example": "(二甲双胍)-[:FORBIDDEN_FOR {severity: '绝对禁忌'}]->(严重肾功能不全)"
+    },
+    "REQUIRES_MONITORING": {
+      "description": "需要监测的指标",
+      "source": "Drug",
+      "target": "Metric",
+      "properties": {
+        "frequency": {
+          "type": "string",
+          "description": "监测频率",
+          "example": "每3个月"
+        },
+        "reason": {
+          "type": "string",
+          "description": "监测原因",
+          "required": false
+        }
+      },
+      "example": "(二甲双胍)-[:REQUIRES_MONITORING {frequency: '每3个月'}]->(eGFR)"
+    },
+    "DOSAGE_ADJUST_IF": {
+      "description": "需要调整剂量的条件",
+      "source": "Drug",
+      "target": "Metric",
+      "properties": {
+        "operator": {
+          "type": "string",
+          "description": "比较运算符",
+          "enum": ["<", "<=", ">", ">="],
+          "example": "<"
+        },
+        "value": {
+          "type": "float",
+          "description": "阈值",
+          "example": 45.0
+        },
+        "adjustment": {
+          "type": "string",
+          "description": "调整建议",
+          "example": "减量至最大1000mg/日"
+        }
+      },
+      "example": "(二甲双胍)-[:DOSAGE_ADJUST_IF {operator: '<', value: 45, adjustment: '减量'}]->(eGFR)"
+    }
+  },
+  "query_patterns": {
+    "指标禁忌查询": {
+      "description": "查询某个指标阈值下禁用的药物",
+      "template": "MATCH (d:Drug)-[r:CONTRAINDICATED_IF]->(m:Metric {name: $metric_name}) WHERE r.operator = $operator AND r.value = $threshold RETURN d.name, r.severity",
+      "example": "eGFR < 30 的患者不能使用哪些药物？"
+    },
+    "药物分类查询": {
+      "description": "查询某个分类下的所有药物",
+      "template": "MATCH (d:Drug)-[:BELONGS_TO]->(c:Category {name: $category_name}) RETURN d.name, d.max_daily_dose",
+      "example": "有哪些SGLT2抑制剂？"
+    },
+    "疾病禁忌查询": {
+      "description": "查询某种疾病患者禁用的药物",
+      "template": "MATCH (d:Drug)-[r:FORBIDDEN_FOR]->(dis:Disease) WHERE dis.name CONTAINS $disease_keyword RETURN d.name, r.severity",
+      "example": "心力衰竭患者禁用哪些药物？"
+    },
+    "药物详情查询": {
+      "description": "查询某个药物的所有禁忌和监测要求",
+      "template": "MATCH (d:Drug {name: $drug_name})-[r]->(target) WHERE type(r) IN ['CONTRAINDICATED_IF', 'FORBIDDEN_FOR', 'REQUIRES_MONITORING'] RETURN type(r), target.name, r",
+      "example": "二甲双胍有哪些禁忌症和注意事项？"
+    }
+  }
+}

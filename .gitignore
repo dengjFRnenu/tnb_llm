@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# 模型文件 - 避免上传大型模型文件
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.onnx
+*.h5
+
+# 数据文件
+*.csv
+*.json.gz
+*.parquet
+*.db
+*.sqlite
+
+# 向量数据库
+chroma_db/
+faiss_index/
+*.index
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# 环境
+.env
+venv/
+env/
+ENV/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+
+# 临时文件
+*.tmp
+*.bak
+*.tar.gz

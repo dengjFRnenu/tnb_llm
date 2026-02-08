@@ -1,0 +1,3226 @@
+[
+  {
+    "drug": {
+      "id": "1",
+      "name": "盐酸二甲双胍片",
+      "en_name": "Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "max_daily_dose": "2550mg",
+        "starting_dose": "500mg",
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [
+      "格华止"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "于单纯饮食控制及体育锻炼控制血糖无效的 2 型糖尿病，尤其是肥胖和伴高胰岛素血症者，用本品不"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "饮食控制及体育锻炼控制血糖无效的 2 型糖尿病，尤其是肥胖和伴高胰岛素血症者，用本品不"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "）。\n2. 急性或慢性代谢性酸中毒，包括糖尿病酮症酸中毒。\n3. 可能引起肾功能改变的"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "2. 急性或慢性代谢性酸中毒，包括糖尿病酮症酸中毒。\n3. 可能引起肾功能改变的急性情况（"
+      },
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": "重感染、休克）。\n4. 急性或慢性疾病（心力衰竭、呼吸衰竭、近期心肌梗死、休克）。\n5."
+      },
+      {
+        "name": "心肌梗死",
+        "type": "禁忌",
+        "context": "急性或慢性疾病（心力衰竭、呼吸衰竭、近期心肌梗死、休克）。\n5. 肝功能不全、急性酒精中"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "1. 中重度肾功能不全（eGFR < 30 mL/min/1."
+      },
+      {
+        "name": "肝功能不全",
+        "type": "禁忌",
+        "context": "呼吸衰竭、近期心肌梗死、休克）。\n5. 肝功能不全、急性酒精中毒、酗酒。"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "in/1.73m²）。\n2. 急性或慢性代谢性酸中毒，包括糖尿病酮症酸中毒。\n3. 可能引起"
+      },
+      {
+        "name": "酒精中毒",
+        "type": "禁忌",
+        "context": "肌梗死、休克）。\n5. 肝功能不全、急性酒精中毒、酗酒。"
+      },
+      {
+        "name": "酗酒",
+        "type": "禁忌",
+        "context": "克）。\n5. 肝功能不全、急性酒精中毒、酗酒。"
+      },
+      {
+        "name": "休克",
+        "type": "禁忌",
+        "context": "起肾功能改变的急性情况（脱水、严重感染、休克）。\n4. 急性或慢性疾病（心力衰竭、呼"
+      },
+      {
+        "name": "感染",
+        "type": "禁忌",
+        "context": "可能引起肾功能改变的急性情况（脱水、严重感染、休克）。\n4. 急性或慢性疾病（心力衰"
+      },
+      {
+        "name": "呼吸衰竭",
+        "type": "禁忌",
+        "context": "克）。\n4. 急性或慢性疾病（心力衰竭、呼吸衰竭、近期心肌梗死、休克）。\n5. 肝功能不"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "2",
+      "name": "阿卡波糖片",
+      "en_name": "Acarbose Tablets",
+      "dosage_info": {
+        "starting_dose": "50mg",
+        "timing": "餐前"
+      }
+    },
+    "category": "α-糖苷酶抑制剂",
+    "brands": [
+      "拜糖苹"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制，用于治疗 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制，用于治疗 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "严重疝气、肠梗阻、肠溃疡）。\n4. 严重肾功能损害（肌酐清除率 < 25 mL/min）者"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "CrCl",
+        "operator": "<",
+        "value": 25.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "肌酐清除率 < 25"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "3",
+      "name": "格列美脲片",
+      "en_name": "Glimepiride Tablets",
+      "dosage_info": {
+        "max_daily_dose": "6mg",
+        "starting_dose": "1mg",
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "亚莫利"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "2 型糖尿病。在饮食控制、体育锻炼及减轻体重均不能满"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "2 型糖尿病。在饮食控制、体育锻炼及减轻体重均不能满"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病、糖尿病酮症酸中毒、昏迷。\n2. 对格列"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病、糖尿病酮症酸中毒、昏迷。\n2. 对格列"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病、糖尿病酮症酸中毒、昏迷。\n2. 对格列美脲、磺脲类、磺胺"
+      },
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "、磺脲类、磺胺类过敏者。\n3. 严重肝、肾功能损害。\n4. 孕妇及哺乳期妇女。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "4",
+      "name": "瑞格列奈片",
+      "en_name": "Repaglinide Tablets",
+      "dosage_info": {
+        "starting_dose": "0.5mg",
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "诺和龙"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "减轻体重及运动锻炼不能有效控制高血糖的 2 型糖尿病患者。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "重及运动锻炼不能有效控制高血糖的 2 型糖尿病患者。"
+      },
+      {
+        "name": "高血糖",
+        "type": "适应症",
+        "context": "饮食控制、减轻体重及运动锻炼不能有效控制高血糖的 2 型糖尿病患者。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 伴或不伴昏迷的糖尿病酮症酸中毒"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 伴或不伴昏迷的糖尿病酮症酸中毒"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": " 型糖尿病。\n2. 伴或不伴昏迷的糖尿病酮症酸中毒。\n3. 严重肝、肾功能不全。\n4. 妊"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "昏迷的糖尿病酮症酸中毒。\n3. 严重肝、肾功能不全。\n4. 妊娠或哺乳期。\n5. 同时服用"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "6",
+      "name": "盐酸吡格列酮片",
+      "en_name": "Pioglitazone Hydrochloride Tablets",
+      "dosage_info": {
+        "starting_dose": "15mg",
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "艾汀",
+      "卡司平"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。\n单药治疗：配合饮食控制和运动。\n联合"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。\n单药治疗：配合饮食控制和运动。\n联合"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": " 现有或既往有膀胱癌病史的患者。\n5. 糖尿病酮症酸中毒。"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "或既往有膀胱癌病史的患者。\n5. 糖尿病酮症酸中毒。"
+      },
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": "1. **心力衰竭：** 纽约心脏学会（NYHA）心功能分"
+      },
+      {
+        "name": "肝功能损害",
+        "type": "禁忌",
+        "context": "2. 对本品任何成份过敏者。\n3. 严重肝功能损害者。\n4. 现有或既往有膀胱癌病史的患者"
+      },
+      {
+        "name": "膀胱癌",
+        "type": "禁忌",
+        "context": " 严重肝功能损害者。\n4. 现有或既往有膀胱癌病史的患者。\n5. 糖尿病酮症酸中毒。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "7",
+      "name": "达格列净片",
+      "en_name": "Dapagliflozin Tablets",
+      "dosage_info": {
+        "starting_dose": "5mg"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "安达唐"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "1. 用于 2 型糖尿病成人患者，改善血糖控制。\n2. 用于 2"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "1. 用于 2 型糖尿病成人患者，改善血糖控制。\n2. 用于 2"
+      },
+      {
+        "name": "心力衰竭",
+        "type": "适应症",
+        "context": "2. 用于 2 型糖尿病成人患者，降低因心力衰竭住院的风险。\n3. 用于慢性肾脏病（CK"
+      },
+      {
+        "name": "心衰",
+        "type": "适应症",
+        "context": "FR 持续下降、终末期肾病、心血管死亡和心衰住院的风险。"
+      },
+      {
+        "name": "慢性肾脏病",
+        "type": "适应症",
+        "context": "，降低因心力衰竭住院的风险。\n3. 用于慢性肾脏病（CKD）成人患者，降低 eGFR 持续"
+      },
+      {
+        "name": "CKD",
+        "type": "适应症",
+        "context": "衰竭住院的风险。\n3. 用于慢性肾脏病（CKD）成人患者，降低 eGFR 持续下降、终"
+      },
+      {
+        "name": "终末期肾病",
+        "type": "适应症",
+        "context": "D）成人患者，降低 eGFR 持续下降、终末期肾病、心血管死亡和心衰住院的风险。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": ". 对本品有严重过敏反应史。\n2. 严重肾功能损害（eGFR < 30 mL/min）且正"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30 mL/min"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 25.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 25 mL/min"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "8",
+      "name": "恩格列净片",
+      "en_name": "Empagliflozin Tablets",
+      "dosage_info": {
+        "timing": "空腹"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "欧唐静"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "1. 2 型糖尿病改善血糖控制。\n2. 用于伴有心血管疾病"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "1. 2 型糖尿病改善血糖控制。\n2. 用于伴有心血管疾病"
+      },
+      {
+        "name": "心力衰竭",
+        "type": "适应症",
+        "context": "者，降低心血管死亡风险。\n3. 用于慢性心力衰竭成人患者（HFrEF 或 HFpEF），"
+      },
+      {
+        "name": "心衰",
+        "type": "适应症",
+        "context": "EF 或 HFpEF），降低心血管死亡和心衰住院风险。"
+      },
+      {
+        "name": "心血管疾病",
+        "type": "适应症",
+        "context": " 型糖尿病改善血糖控制。\n2. 用于伴有心血管疾病的 2 型糖尿病患者，降低心血管死亡风险"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "9",
+      "name": "维格列汀片",
+      "en_name": "Vildagliptin Tablets",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "佳维"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "治疗 2 型糖尿病。\n单药治疗：配合饮食控制和运动。\n联合"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "治疗 2 型糖尿病。\n单药治疗：配合饮食控制和运动。\n联合"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 对本品任何成份过敏者。\n2. 1 型糖尿病或糖尿病酮症酸中毒。\n3. **中重度肝"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": ". 对本品任何成份过敏者。\n2. 1 型糖尿病或糖尿病酮症酸中毒。\n3. **中重度肝"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "成份过敏者。\n2. 1 型糖尿病或糖尿病酮症酸中毒。\n3. **中重度肝功能损害：** 包"
+      },
+      {
+        "name": "肝功能损害",
+        "type": "禁忌",
+        "context": "病或糖尿病酮症酸中毒。\n3. **中重度肝功能损害：** 包括治疗前 ALT 或 AST "
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "10",
+      "name": "利格列汀片",
+      "en_name": "Linagliptin Tablets",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "欧唐宁"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病成人患者，改善血糖控制。可单药使用或与二"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病成人患者，改善血糖控制。可单药使用或与二"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "11",
+      "name": "利拉鲁肽注射液",
+      "en_name": "Liraglutide Injection",
+      "dosage_info": {}
+    },
+    "category": "未分类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "12",
+      "name": "司美格鲁肽注射液",
+      "en_name": "Semaglutide Injection",
+      "dosage_info": {}
+    },
+    "category": "未分类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "13",
+      "name": "伏格列波糖片",
+      "en_name": "Voglibose Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "14",
+      "name": "那格列奈片",
+      "en_name": "Nateglinide Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "15",
+      "name": "格列齐特缓释片",
+      "en_name": "Gliclazide Sustained-release Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "16",
+      "name": "沙格列汀片",
+      "en_name": "Saxagliptin Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "17",
+      "name": "卡格列净片",
+      "en_name": "Canagliflozin Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "18",
+      "name": "罗格列酮片",
+      "en_name": "Rosiglitazone Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "19",
+      "name": "格列喹酮片",
+      "en_name": "Gliquidone Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "20",
+      "name": "艾塞那肽注射液",
+      "en_name": "Exenatide Injection",
+      "dosage_info": {}
+    },
+    "category": "GLP-1激动剂",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "21",
+      "name": "门冬胰岛素注射液",
+      "en_name": "Insulin Aspart",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "22",
+      "name": "门冬胰岛素 30 注射液",
+      "en_name": "Insulin Aspart 30",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "23",
+      "name": "德谷胰岛素注射液",
+      "en_name": "Insulin Degludec",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "24",
+      "name": "甘精胰岛素 U300",
+      "en_name": "Insulin Glargine 300 U/mL",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "25",
+      "name": "度拉糖肽注射液",
+      "en_name": "Dulaglutide",
+      "dosage_info": {}
+    },
+    "category": "未分类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "26",
+      "name": "聚乙二醇洛塞那肽注射液",
+      "en_name": "Polyethylene Glycol Loxenatide",
+      "dosage_info": {}
+    },
+    "category": "GLP-1激动剂",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "27",
+      "name": "阿格列汀片",
+      "en_name": "Alogliptin Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "28",
+      "name": "德谷门冬双胰岛素注射液",
+      "en_name": "Insulin Degludec/Insulin Aspart",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "29",
+      "name": "米格列奈钙片",
+      "en_name": "Mitiglinide Calcium Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "30",
+      "name": "利司那肽注射液",
+      "en_name": "Lixisenatide Injection",
+      "dosage_info": {}
+    },
+    "category": "GLP-1激动剂",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "31",
+      "name": "伏格列波糖散",
+      "en_name": "Voglibose Dispersible Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "32",
+      "name": "米格列醇片",
+      "en_name": "Miglitol Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "33",
+      "name": "格列喹酮片",
+      "en_name": "Gliquidone",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "34",
+      "name": "格列本脲",
+      "en_name": "Glibenclamide",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "35",
+      "name": "精蛋白锌重组人胰岛素注射液",
+      "en_name": "NPH",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "36",
+      "name": "精蛋白锌重组人胰岛素混合注射液",
+      "en_name": "70/30",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "37",
+      "name": "地特胰岛素",
+      "en_name": "Insulin Detemir",
+      "dosage_info": {}
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "38",
+      "name": "艾塞那肽周制剂",
+      "en_name": "Exenatide Extended-Release",
+      "dosage_info": {}
+    },
+    "category": "GLP-1激动剂",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "39",
+      "name": "考来维仑",
+      "en_name": "Colesevelam",
+      "dosage_info": {}
+    },
+    "category": "胆汁酸螯合剂",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "40",
+      "name": "普兰林肽",
+      "en_name": "Pramlintide",
+      "dosage_info": {}
+    },
+    "category": "其他",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "51",
+      "name": "盐酸二甲双胍片",
+      "en_name": "Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "max_daily_dose": "2.55g",
+        "starting_dose": "0.5g",
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [
+      "格华止 (Glucophage)"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "于单纯饮食控制及体育锻炼控制血糖无效的 2 型糖尿病，尤其是肥胖和伴高胰岛素血症者。\n2. "
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "饮食控制及体育锻炼控制血糖无效的 2 型糖尿病，尤其是肥胖和伴高胰岛素血症者。\n2. "
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "R < 30）。\n2. 代谢性酸中毒（如酮症酸中毒）。\n3. 严重感染、休克、脱水。\n4."
+      },
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": ". 严重感染、休克、脱水。\n4. 急慢性心力衰竭、近期心肌梗死。\n5. 肝功能不全、酒精"
+      },
+      {
+        "name": "心肌梗死",
+        "type": "禁忌",
+        "context": "休克、脱水。\n4. 急慢性心力衰竭、近期心肌梗死。\n5. 肝功能不全、酒精中毒、酗酒。"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "1. 中重度肾功能不全（eGFR < 30）。\n2. 代谢性酸"
+      },
+      {
+        "name": "肝功能不全",
+        "type": "禁忌",
+        "context": " 急慢性心力衰竭、近期心肌梗死。\n5. 肝功能不全、酒精中毒、酗酒。"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "功能不全（eGFR < 30）。\n2. 代谢性酸中毒（如酮症酸中毒）。\n3. 严重感染、休克"
+      },
+      {
+        "name": "酒精中毒",
+        "type": "禁忌",
+        "context": "衰竭、近期心肌梗死。\n5. 肝功能不全、酒精中毒、酗酒。"
+      },
+      {
+        "name": "酗酒",
+        "type": "禁忌",
+        "context": "心肌梗死。\n5. 肝功能不全、酒精中毒、酗酒。"
+      },
+      {
+        "name": "休克",
+        "type": "禁忌",
+        "context": "中毒（如酮症酸中毒）。\n3. 严重感染、休克、脱水。\n4. 急慢性心力衰竭、近期心肌"
+      },
+      {
+        "name": "感染",
+        "type": "禁忌",
+        "context": "谢性酸中毒（如酮症酸中毒）。\n3. 严重感染、休克、脱水。\n4. 急慢性心力衰竭、近"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 "
+      },
+      {
+        "metric": "eGFR",
+        "operator": "BETWEEN",
+        "value_min": 45.0,
+        "value_max": 59.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR 45-59"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "52",
+      "name": "盐酸二甲双胍缓释片",
+      "en_name": "格华止 XR 0.5g 规格",
+      "dosage_info": {
+        "max_daily_dose": "2000mg",
+        "starting_dose": "500mg",
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [
+      "格华止 XR (Glucophage XR)"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "54",
+      "name": "二甲双胍格列本脲片 (I)",
+      "en_name": "I",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于饮食控制和运动不能满意控制血糖的 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "饮食控制和运动不能满意控制血糖的 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 肾脏疾病或肾功能不全。\n2. 1 型糖尿病、酮症酸中毒。\n3. 对磺脲类药物过敏。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": ". 肾脏疾病或肾功能不全。\n2. 1 型糖尿病、酮症酸中毒。\n3. 对磺脲类药物过敏。"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "疾病或肾功能不全。\n2. 1 型糖尿病、酮症酸中毒。\n3. 对磺脲类药物过敏。\n4. 心衰"
+      },
+      {
+        "name": "心衰",
+        "type": "禁忌",
+        "context": "中毒。\n3. 对磺脲类药物过敏。\n4. 心衰、严重呼吸系统疾病。"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "1. 肾脏疾病或肾功能不全。\n2. 1 型糖尿病、酮症酸中毒。\n3"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "55",
+      "name": "西格列汀二甲双胍片 (II)",
+      "en_name": "II",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "配合饮食和运动，用于改善 2 型糖尿病患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "配合饮食和运动，用于改善 2 型糖尿病患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "R < 30 的严重肾病。\n2. 急慢性代谢性酸中毒。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30 "
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "56",
+      "name": "维格列汀二甲双胍片",
+      "en_name": "Vildagliptin and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "在接受维格列汀和盐酸二甲双胍联合治疗的 2 型糖尿病患者，或用于单用盐酸二甲双胍血糖控制不佳"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "维格列汀和盐酸二甲双胍联合治疗的 2 型糖尿病患者，或用于单用盐酸二甲双胍血糖控制不佳"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "梗死。\n3. 急性或慢性代谢性酸中毒（如糖尿病酮症酸中毒）。\n4. 严重感染、休克、肝"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "\n3. 急性或慢性代谢性酸中毒（如糖尿病酮症酸中毒）。\n4. 严重感染、休克、肝功能受损、"
+      },
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": "不全（eGFR < 30）。\n2. 急性心力衰竭、近期心肌梗死。\n3. 急性或慢性代谢性"
+      },
+      {
+        "name": "心肌梗死",
+        "type": "禁忌",
+        "context": " < 30）。\n2. 急性心力衰竭、近期心肌梗死。\n3. 急性或慢性代谢性酸中毒（如糖尿"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "1. 肾脏疾病或肾功能不全（eGFR < 30）。\n2. 急性心力"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "力衰竭、近期心肌梗死。\n3. 急性或慢性代谢性酸中毒（如糖尿病酮症酸中毒）。\n4. 严重感染"
+      },
+      {
+        "name": "酒精中毒",
+        "type": "禁忌",
+        "context": "\n4. 严重感染、休克、肝功能受损、急性酒精中毒。"
+      },
+      {
+        "name": "休克",
+        "type": "禁忌",
+        "context": "如糖尿病酮症酸中毒）。\n4. 严重感染、休克、肝功能受损、急性酒精中毒。"
+      },
+      {
+        "name": "感染",
+        "type": "禁忌",
+        "context": "中毒（如糖尿病酮症酸中毒）。\n4. 严重感染、休克、肝功能受损、急性酒精中毒。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "BETWEEN",
+        "value_min": 30.0,
+        "value_max": 44.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR 30-44"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "57",
+      "name": "恩格列净二甲双胍片",
+      "en_name": "Empagliflozin and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制及运动，用于改善 2 型糖尿病成人的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制及运动，用于改善 2 型糖尿病成人的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "30）或透析患者。\n2. 代谢性酸中毒、糖尿病酮症酸中毒。\n3. 严重心肺疾患、肝功能"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "或透析患者。\n2. 代谢性酸中毒、糖尿病酮症酸中毒。\n3. 严重心肺疾患、肝功能不全。"
+      },
+      {
+        "name": "肝功能不全",
+        "type": "禁忌",
+        "context": "糖尿病酮症酸中毒。\n3. 严重心肺疾患、肝功能不全。"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "eGFR < 30）或透析患者。\n2. 代谢性酸中毒、糖尿病酮症酸中毒。\n3. 严重心肺疾患"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "58",
+      "name": "利格列汀二甲双胍片",
+      "en_name": "Linagliptin and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病成人的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病成人的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能受损",
+        "type": "禁忌",
+        "context": "1. 严重肾功能受损（eGFR < 30）。\n2. 代谢性酸"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "功能受损（eGFR < 30）。\n2. 代谢性酸中毒。\n3. 对利格列汀或二甲双胍过敏。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "59",
+      "name": "沙格列汀二甲双胍缓释片",
+      "en_name": "Saxagliptin and Metformin Hydrochloride Extended-Release Tablets",
+      "dosage_info": {
+        "timing": "晚餐时"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制及运动，用于改善 2 型糖尿病成人的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制及运动，用于改善 2 型糖尿病成人的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "功能不全（eGFR < 30）。\n2. 糖尿病酮症酸中毒。"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "全（eGFR < 30）。\n2. 糖尿病酮症酸中毒。"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "1. 严重肾功能不全（eGFR < 30）。\n2. 糖尿病酮"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "BETWEEN",
+        "value_min": 30.0,
+        "value_max": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR 30-45"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "60",
+      "name": "吡格列酮二甲双胍片",
+      "en_name": "Pioglitazone Hydrochloride and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "FR < 30）。\n3. 代谢性酸中毒、糖尿病酮症酸中毒。\n4. 现有或既往膀胱癌病史"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "< 30）。\n3. 代谢性酸中毒、糖尿病酮症酸中毒。\n4. 现有或既往膀胱癌病史。"
+      },
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": "1. **心力衰竭：** NYHA 心功能 III 级或 "
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "肾功损害（eGFR < 30）。\n3. 代谢性酸中毒、糖尿病酮症酸中毒。\n4. 现有或既往膀"
+      },
+      {
+        "name": "膀胱癌",
+        "type": "禁忌",
+        "context": "毒、糖尿病酮症酸中毒。\n4. 现有或既往膀胱癌病史。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "61",
+      "name": "苯甲酸阿格列汀二甲双胍片",
+      "en_name": "Alogliptin Benzoate and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "善正在接受阿格列汀和二甲双胍联合治疗的 2 型糖尿病成人患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "接受阿格列汀和二甲双胍联合治疗的 2 型糖尿病成人患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "FR < 30）。\n2. 代谢性酸中毒、糖尿病酮症酸中毒。\n3. 对本品成份过敏者。"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "< 30）。\n2. 代谢性酸中毒、糖尿病酮症酸中毒。\n3. 对本品成份过敏者。"
+      },
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "1. 严重肾功能损害（eGFR < 30）。\n2. 代谢性酸"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "功能损害（eGFR < 30）。\n2. 代谢性酸中毒、糖尿病酮症酸中毒。\n3. 对本品成份过"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "BETWEEN",
+        "value_min": 45.0,
+        "value_max": 59.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR 45-59"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "62",
+      "name": "苯甲酸阿格列汀吡格列酮片",
+      "en_name": "Alogliptin Benzoate and Pioglitazone Hydrochloride Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病成人的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病成人的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": "1. **心力衰竭：** NYHA 心功能 III 级或 "
+      },
+      {
+        "name": "肝功能损害",
+        "type": "禁忌",
+        "context": "\n3. 未经检查的肉眼血尿。\n4. 严重肝功能损害。"
+      },
+      {
+        "name": "膀胱癌",
+        "type": "禁忌",
+        "context": " IV 级患者禁用。\n2. 现有或既往有膀胱癌病史。\n3. 未经检查的肉眼血尿。\n4."
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "63",
+      "name": "达格列净沙格列汀片",
+      "en_name": "Dapagliflozin and Saxagliptin Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "或正在接受达格列净和沙格列汀联合治疗的 2 型糖尿病成人患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "接受达格列净和沙格列汀联合治疗的 2 型糖尿病成人患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "品任何成份有严重过敏反应史。\n2. 严重肾功能损害（eGFR < 30）或正在透析的患者。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "64",
+      "name": "恩格列净利格列汀片",
+      "en_name": "Empagliflozin and Linagliptin Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病成人患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病成人患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "终末期肾病",
+        "type": "禁忌",
+        "context": "1. 严重肾损害（eGFR < 30）、终末期肾病或透析患者。\n2. 对本品任何成份有严重"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "65",
+      "name": "埃格列净片",
+      "en_name": "Ertugliflozin Tablets",
+      "dosage_info": {
+        "starting_dose": "5mg"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病成人患者，改善血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病成人患者，改善血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "1. 严重肾功能损害（eGFR < 30）或正在透析的患者。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "66",
+      "name": "埃格列净二甲双胍片",
+      "en_name": "Ertugliflozin and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制及运动，用于改善 2 型糖尿病成人的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "配合饮食控制及运动，用于改善 2 型糖尿病成人的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "析。\n2. 急性或慢性代谢性酸中毒（包括糖尿病酮症酸中毒）。\n3. 对本品任何成份有严"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "2. 急性或慢性代谢性酸中毒（包括糖尿病酮症酸中毒）。\n3. 对本品任何成份有严重超敏反应"
+      },
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "1. 严重肾功能损害（eGFR < 30）、终末期肾病或透析"
+      },
+      {
+        "name": "终末期肾病",
+        "type": "禁忌",
+        "context": " 严重肾功能损害（eGFR < 30）、终末期肾病或透析。\n2. 急性或慢性代谢性酸中毒（"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "）、终末期肾病或透析。\n2. 急性或慢性代谢性酸中毒（包括糖尿病酮症酸中毒）。\n3. 对本品"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "67",
+      "name": "阿必鲁肽",
+      "en_name": "Albiglutide",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "未分类",
+    "brands": [
+      "Tanzeum（注：部分地区已停产，但临床数据库仍包含）"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "作为饮食控制和运动的辅助治疗，用于改善 2 型糖尿病成人患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "食控制和运动的辅助治疗，用于改善 2 型糖尿病成人患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "甲状腺髓样癌",
+        "type": "禁忌",
+        "context": "1. 个人或家族有甲状腺髓样癌（MTC）病史。\n2. 多发性内分泌腺瘤"
+      },
+      {
+        "name": "MTC",
+        "type": "禁忌",
+        "context": "1. 个人或家族有甲状腺髓样癌（MTC）病史。\n2. 多发性内分泌腺瘤病 2 "
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "68",
+      "name": "米格列奈钙伏格列波糖片",
+      "en_name": "Mitiglinide Calcium and Voglibose Tablets",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "口服"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于治疗 2 型糖尿病，改善餐后高血糖。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于治疗 2 型糖尿病，改善餐后高血糖。"
+      },
+      {
+        "name": "高血糖",
+        "type": "适应症",
+        "context": "用于治疗 2 型糖尿病，改善餐后高血糖。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 严重酮症、糖尿病昏迷或昏迷前期。\n2. 严重感染、手术前"
+      },
+      {
+        "name": "感染",
+        "type": "禁忌",
+        "context": "酮症、糖尿病昏迷或昏迷前期。\n2. 严重感染、手术前后。\n3. 肠梗阻、严重疝气、大"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "69",
+      "name": "格列齐特片",
+      "en_name": "Gliclazide Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症、昏迷。\n3. 严重"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症、昏迷。\n3. 严重"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "2. 糖尿病酮症、昏迷。\n3. 严重肝、肾功能不全。\n4. 孕妇及哺乳期。\n5. 与咪康唑"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "70",
+      "name": "格列吡嗪控释片",
+      "en_name": "Glipizide Gastrointestinal Therapeutic System",
+      "dosage_info": {
+        "starting_dose": "5mg"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 对磺脲类药过敏。\n2. 1 型糖尿病。\n3. 糖尿病酮症酸中毒。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 对磺脲类药过敏。\n2. 1 型糖尿病。\n3. 糖尿病酮症酸中毒。"
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "敏。\n2. 1 型糖尿病。\n3. 糖尿病酮症酸中毒。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "71",
+      "name": "格列吡嗪片",
+      "en_name": "Glipizide Tablets",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "口服"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "美吡达"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。适用于经饮食控制及体育锻炼 2-3 个"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。适用于经饮食控制及体育锻炼 2-3 个"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症酸中毒、昏迷。\n3."
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症酸中毒、昏迷。\n3."
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症酸中毒、昏迷。\n3. 严重肝、肾功能不全。"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "糖尿病酮症酸中毒、昏迷。\n3. 严重肝、肾功能不全。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "72",
+      "name": "格列喹酮片",
+      "en_name": "Gliquidone Tablets",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "糖适平"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症酸中毒、昏迷。\n3."
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症酸中毒、昏迷。\n3."
+      },
+      {
+        "name": "酮症酸中毒",
+        "type": "禁忌",
+        "context": "1. 1 型糖尿病。\n2. 糖尿病酮症酸中毒、昏迷。\n3. **严重**肾功能不全（"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "病酮症酸中毒、昏迷。\n3. **严重**肾功能不全（尽管 95% 经胆道排泄，但末期仍禁用"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "73",
+      "name": "马来酸罗格列酮片",
+      "en_name": "文迪雅 / Rosiglitazone Maleate Tablets",
+      "dosage_info": {
+        "starting_dose": "4mg"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [
+      "文迪雅 (Avandia)"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肝功能损害",
+        "type": "禁忌",
+        "context": "I 级或 IV 级患者禁用。\n2. 严重肝功能损害者。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "74",
+      "name": "罗格列酮钠片",
+      "en_name": "太罗 / Rosiglitazone Sodium Tablets",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "75",
+      "name": "罗格列酮二甲双胍片",
+      "en_name": "Rosiglitazone Maleate and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于改善 2 型糖尿病患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "心力衰竭",
+        "type": "禁忌",
+        "context": "功能损害（二甲双胍限制）。\n2. 充血性心力衰竭（罗格列酮限制）。\n3. 代谢性酸中毒。"
+      },
+      {
+        "name": "充血性心力衰竭",
+        "type": "禁忌",
+        "context": ". 肾功能损害（二甲双胍限制）。\n2. 充血性心力衰竭（罗格列酮限制）。\n3. 代谢性酸中毒。"
+      },
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "1. 肾功能损害（二甲双胍限制）。\n2. 充血性心力衰竭"
+      },
+      {
+        "name": "代谢性酸中毒",
+        "type": "禁忌",
+        "context": "充血性心力衰竭（罗格列酮限制）。\n3. 代谢性酸中毒。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "76",
+      "name": "瑞格列奈二甲双胍片",
+      "en_name": "Repaglinide and Metformin Hydrochloride Tablets",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "甲双胍联合治疗或单用其中一种控制不佳的 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "联合治疗或单用其中一种控制不佳的 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "1型糖尿病",
+        "type": "禁忌",
+        "context": "1. 肾功能不全。\n2. 1 型糖尿病。\n3. 严重肝功能受损。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "禁忌",
+        "context": "1. 肾功能不全。\n2. 1 型糖尿病。\n3. 严重肝功能受损。"
+      },
+      {
+        "name": "肾功能不全",
+        "type": "禁忌",
+        "context": "1. 肾功能不全。\n2. 1 型糖尿病。\n3. 严重肝功"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "77",
+      "name": "中性重组人胰岛素注射液",
+      "en_name": "诺和灵 R / Novolin R",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "诺和灵 R"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "78",
+      "name": "低精蛋白重组人胰岛素注射液",
+      "en_name": "诺和灵 N / Novolin N",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "诺和灵 N"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "79",
+      "name": "精蛋白重组人胰岛素混合注射液",
+      "en_name": "30R",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "80",
+      "name": "精蛋白重组人胰岛素混合注射液",
+      "en_name": "50R",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "81",
+      "name": "重组人胰岛素注射液",
+      "en_name": "Recombinant Human Insulin Injection",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "优泌林 R"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于治疗糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "1. 低血糖发作期。\n2. 对胰岛素及其成份过敏者。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "82",
+      "name": "精蛋白锌重组人胰岛素注射液",
+      "en_name": "Isophane Protamine Recombinant Human Insulin Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "优泌林 N"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于治疗糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖；对成份过敏。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "83",
+      "name": "精蛋白锌重组人胰岛素混合注射液",
+      "en_name": "70/30",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖；**严禁静脉注射**。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "84",
+      "name": "赖脯胰岛素注射液",
+      "en_name": "Insulin Lispro Injection",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "优泌乐"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "糖尿病治疗。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖期；对成份过敏。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "85",
+      "name": "精蛋白锌赖脯胰岛素混合注射液 (25R)",
+      "en_name": "25R",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "优泌乐 25"
+    ],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "86",
+      "name": "精蛋白锌赖脯胰岛素混合注射液",
+      "en_name": "50R",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "87",
+      "name": "谷赖胰岛素注射液",
+      "en_name": "Insulin Glulisine Injection",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "88",
+      "name": "甘精胰岛素注射液",
+      "en_name": "Insulin Glargine Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "来得时"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "糖尿病治疗。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "89",
+      "name": "地特胰岛素注射液",
+      "en_name": "Insulin Detemir Injection",
+      "dosage_info": {
+        "timing": "睡前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "90",
+      "name": "德谷胰岛素注射液",
+      "en_name": "Insulin Degludec Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "91",
+      "name": "门冬胰岛素 50 注射液",
+      "en_name": "Biphasic Insulin Aspart 50 Injection",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "诺和锐 50"
+    ],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于治疗糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖发作期；对成份过敏者。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "92",
+      "name": "德谷门冬双胰岛素注射液",
+      "en_name": "Insulin Degludec and Insulin Aspart Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "诺和益"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于治疗成人 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于治疗成人 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "低血糖",
+        "type": "禁忌",
+        "context": "低血糖；过敏。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "93",
+      "name": "甘精胰岛素 U300",
+      "en_name": "Insulin Glargine 300 U/mL Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "来优时"
+    ],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "94",
+      "name": "注射用艾塞那肽微球",
+      "en_name": "Exenatide Extended-Release for Injectable Suspension",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "GLP-1激动剂",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能受损",
+        "type": "禁忌",
+        "context": "2 型 (MEN 2)。\n3. **严重肾功能受损 (eGFR < 30 mL/min)*"
+      },
+      {
+        "name": "甲状腺髓样癌",
+        "type": "禁忌",
+        "context": "1. 甲状腺髓样癌 (MTC) 病史。\n2. 多发性内分泌"
+      },
+      {
+        "name": "MTC",
+        "type": "禁忌",
+        "context": "1. 甲状腺髓样癌 (MTC) 病史。\n2. 多发性内分泌腺瘤 2 "
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "95",
+      "name": "贝那鲁肽注射液",
+      "en_name": "谊生泰 / Beinaglutide",
+      "dosage_info": {
+        "starting_dose": "0.05mg",
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "GLP-1激动剂",
+    "brands": [
+      "谊生泰"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病控制。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "96",
+      "name": "聚乙二醇洛塞那肽注射液",
+      "en_name": "孚来美 / Loxenatide",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "GLP-1激动剂",
+    "brands": [
+      "孚来美"
+    ],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "97",
+      "name": "德谷胰岛素利拉鲁肽注射液",
+      "en_name": "Insulin Degludec and Liraglutide Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [
+      "诺和佳"
+    ],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "98",
+      "name": "甘精胰岛素利司那肽注射液",
+      "en_name": "Insulin Glargine and Lixisenatide Injection",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "GLP-1激动剂",
+    "brands": [
+      "赛益宁"
+    ],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "99",
+      "name": "醋酸普兰林肽注射液",
+      "en_name": "Pramlintide Acetate Injection",
+      "dosage_info": {
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "其他",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "1 型或 2 型糖尿病，在餐前使用胰岛素但仍无法达标者。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "1 型或 2 型糖尿病，在餐前使用胰岛素但仍无法达标者。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "100",
+      "name": "考来维仑片",
+      "en_name": "Colesevelam Tablets",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "胆汁酸螯合剂",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "1. 原发性高胆固醇血症。\n2. 2 型糖尿病（辅助治疗）。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "1. 原发性高胆固醇血症。\n2. 2 型糖尿病（辅助治疗）。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "胰腺炎",
+        "type": "禁忌",
+        "context": "L**。\n3. 伴有高甘油三酯血症导致的胰腺炎史。"
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "101",
+      "name": "度拉糖肽注射液",
+      "en_name": "Dulaglutide Injection",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "未分类",
+    "brands": [
+      "度易达 (Trulicity)"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "1. 用于 2 型糖尿病成人患者改善血糖控制。\n2. 用于伴有心"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "1. 用于 2 型糖尿病成人患者改善血糖控制。\n2. 用于伴有心"
+      },
+      {
+        "name": "心血管疾病",
+        "type": "适应症",
+        "context": "病成人患者改善血糖控制。\n2. 用于伴有心血管疾病或多种心血管风险因素的 2 型糖尿病成人"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "甲状腺髓样癌",
+        "type": "禁忌",
+        "context": "1. 个人或家族有甲状腺髓样癌（MTC）病史。\n2. 多发性内分泌腺瘤"
+      },
+      {
+        "name": "MTC",
+        "type": "禁忌",
+        "context": "1. 个人或家族有甲状腺髓样癌（MTC）病史。\n2. 多发性内分泌腺瘤综合征 "
+      }
+    ],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "102",
+      "name": "恒格列净片",
+      "en_name": "Henagliflozin Tablets",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [
+      "瑞沁"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病改善血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病改善血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能损害",
+        "type": "禁忌",
+        "context": "1. 严重肾功能损害（eGFR < 30）、终末期肾病或透析"
+      },
+      {
+        "name": "终末期肾病",
+        "type": "禁忌",
+        "context": " 严重肾功能损害（eGFR < 30）、终末期肾病或透析患者。\n2. 对本品过敏。"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      },
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 45.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 45 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "103",
+      "name": "司美格鲁肽片",
+      "en_name": "Semaglutide Tablets",
+      "dosage_info": {
+        "starting_dose": "3mg",
+        "timing": "空腹",
+        "route": "口服"
+      }
+    },
+    "category": "未分类",
+    "brands": [
+      "Rybelsus（口服版诺和泰）"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "作为饮食控制和运动的辅助治疗，改善 2 型糖尿病成人患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "为饮食控制和运动的辅助治疗，改善 2 型糖尿病成人患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "104",
+      "name": "艾塞那肽注射液",
+      "en_name": "百泌达 / Byetta - 每日版",
+      "dosage_info": {
+        "starting_dose": "5μg",
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "GLP-1激动剂",
+    "brands": [
+      "百泌达 (Byetta)"
+    ],
+    "treats": [],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能受损",
+        "type": "禁忌",
+        "context": "1. **严重肾功能受损（eGFR < 30）禁用**。\n2. "
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 30.0,
+        "unit": "mL/min",
+        "severity": "CRITICAL",
+        "context": "eGFR < 30"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "105",
+      "name": "马来酸罗格列酮二甲双胍片",
+      "en_name": "Avandamet",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "双胍类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "106",
+      "name": "考来替泊颗粒",
+      "en_name": "Colestipol Hydrochloride Granules",
+      "dosage_info": {}
+    },
+    "category": "胆汁酸螯合剂",
+    "brands": [],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": ". 高胆固醇血症。\n2. 辅助用于改善 2 型糖尿病血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "胆固醇血症。\n2. 辅助用于改善 2 型糖尿病血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "107",
+      "name": "氯化铬口服液 / 吡啶甲酸铬",
+      "en_name": "Chromium Chloride",
+      "dosage_info": {}
+    },
+    "category": "其他",
+    "brands": [],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "辅助用于改善糖尿病患者的葡萄糖耐量（作为微量元素补充）。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "108",
+      "name": "醋酸普兰林肽",
+      "en_name": "Pramlintide Acetate - 详情版",
+      "dosage_info": {}
+    },
+    "category": "其他",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "109",
+      "name": "盐酸溴隐亭速释片",
+      "en_name": "Cycloset",
+      "dosage_info": {
+        "max_daily_dose": "4.8mg",
+        "starting_dose": "0.8mg",
+        "timing": "随餐"
+      }
+    },
+    "category": "其他",
+    "brands": [
+      "Cycloset（糖尿病专用规格）"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "改善 2 型糖尿病成人患者的血糖控制。"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "改善 2 型糖尿病成人患者的血糖控制。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "110",
+      "name": "阿必鲁肽",
+      "en_name": "Albiglutide",
+      "dosage_info": {}
+    },
+    "category": "未分类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "111",
+      "name": "利司那肽注射液",
+      "en_name": "Lixisenatide Injection",
+      "dosage_info": {
+        "starting_dose": "10μg",
+        "timing": "餐前",
+        "route": "注射"
+      }
+    },
+    "category": "GLP-1激动剂",
+    "brands": [
+      "利必扬"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病成人患者，作为饮食控制和运动的辅助治疗，"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "用于 2 型糖尿病成人患者，作为饮食控制和运动的辅助治疗，"
+      }
+    ],
+    "forbidden_diseases": [
+      {
+        "name": "肾功能受损",
+        "type": "禁忌",
+        "context": "肽或本品任何成份过敏者。\n2. **严重肾功能受损（eGFR < 15 mL/min/1."
+      },
+      {
+        "name": "终末期肾病",
+        "type": "禁忌",
+        "context": "< 15 mL/min/1.73m²）或终末期肾病患者禁用。**"
+      }
+    ],
+    "metric_constraints": [
+      {
+        "metric": "eGFR",
+        "operator": "<",
+        "value": 15.0,
+        "unit": "mL/min",
+        "severity": "WARNING",
+        "context": "eGFR < 15 mL/min"
+      }
+    ]
+  },
+  {
+    "drug": {
+      "id": "112",
+      "name": "司美格鲁肽注射液",
+      "en_name": "Wegovy - 减重规格",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "未分类",
+    "brands": [
+      "Wegovy"
+    ],
+    "treats": [
+      {
+        "name": "2型糖尿病",
+        "type": "适应症",
+        "context": "m²）且伴有至少一种体重相关合并症（如 2 型糖尿病、高血压或血脂异常）的成人患者的长期体重"
+      },
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "且伴有至少一种体重相关合并症（如 2 型糖尿病、高血压或血脂异常）的成人患者的长期体重"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "113",
+      "name": "精蛋白锌赖脯胰岛素混悬液",
+      "en_name": "Insulin Lispro Protamine Suspension",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [
+      {
+        "name": "糖尿病",
+        "type": "适应症",
+        "context": "糖尿病治疗。"
+      }
+    ],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "114",
+      "name": "德谷胰岛素注射液",
+      "en_name": "200 U/mL 规格",
+      "dosage_info": {
+        "route": "注射"
+      }
+    },
+    "category": "胰岛素",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "115",
+      "name": "艾塞那肽注射液（自启式注射笔）",
+      "en_name": "Bydureon BCise",
+      "dosage_info": {}
+    },
+    "category": "GLP-1激动剂",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "116",
+      "name": "瑞格列奈片",
+      "en_name": "孚来迪 / Repaglinide",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "117",
+      "name": "伏格列波糖片",
+      "en_name": "快步 / Voglibose",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "118",
+      "name": "磷酸西格列汀片",
+      "en_name": "捷诺维 50mg/25mg 规格",
+      "dosage_info": {}
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "119",
+      "name": "那格列奈片",
+      "en_name": "唐力 60mg 规格",
+      "dosage_info": {
+        "timing": "餐前"
+      }
+    },
+    "category": "磺脲类",
+    "brands": [],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  },
+  {
+    "drug": {
+      "id": "120",
+      "name": "阿卡波糖胶囊",
+      "en_name": "卡博平",
+      "dosage_info": {
+        "timing": "随餐"
+      }
+    },
+    "category": "α-糖苷酶抑制剂",
+    "brands": [
+      "卡博平"
+    ],
+    "treats": [],
+    "forbidden_diseases": [],
+    "metric_constraints": []
+  }
+]

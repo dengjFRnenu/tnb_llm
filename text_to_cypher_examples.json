@@ -1,0 +1,155 @@
+{
+    "metadata": {
+        "description": "Text-to-Cypher Few-shot 示例数据集",
+        "version": "1.0",
+        "total_examples": 20,
+        "created_for": "Dia-Agent GraphRAG系统"
+    },
+    "examples": [
+        {
+            "id": 1,
+            "category": "指标禁忌查询",
+            "question": "eGFR小于30的患者不能使用哪些药物？",
+            "cypher": "MATCH (d:Drug)-[r:CONTRAINDICATED_IF]->(m:Metric {name: 'eGFR'})\nWHERE r.operator = '<' AND r.value = 30\nRETURN d.name AS 药品名称, r.severity AS 严重程度",
+            "explanation": "查询与eGFR指标有禁忌关系且阈值为<30的所有药品"
+        },
+        {
+            "id": 2,
+            "category": "指标禁忌查询",
+            "question": "肾功能eGFR低于45需要调整剂量的药物有哪些？",
+            "cypher": "MATCH (d:Drug)-[r:DOSAGE_ADJUST_IF]->(m:Metric {name: 'eGFR'})\nWHERE r.operator = '<' AND r.value = 45\nRETURN d.name AS 药品名称, r.adjustment AS 调整建议",
+            "explanation": "查询eGFR<45时需要减量的药物"
+        },
+        {
+            "id": 3,
+            "category": "指标禁忌查询",
+            "question": "二甲双胍在肾功能多少以下禁用？",
+            "cypher": "MATCH (d:Drug {name: '二甲双胍'})-[r:CONTRAINDICATED_IF]->(m:Metric {name: 'eGFR'})\nRETURN r.operator AS 运算符, r.value AS 阈值, r.severity AS 严重程度",
+            "explanation": "查询特定药物的eGFR禁忌阈值"
+        },
+        {
+            "id": 4,
+            "category": "指标禁忌查询",
+            "question": "哪些药物需要监测肾功能？",
+            "cypher": "MATCH (d:Drug)-[r:REQUIRES_MONITORING]->(m:Metric {name: 'eGFR'})\nRETURN d.name AS 药品名称, r.frequency AS 监测频率",
+            "explanation": "查询需要定期监测eGFR的药物"
+        },
+        {
+            "id": 5,
+            "category": "指标禁忌查询",
+            "question": "eGFR小于60的患者用药有什么限制？",
+            "cypher": "MATCH (d:Drug)-[r]->(m:Metric {name: 'eGFR'})\nWHERE type(r) IN ['CONTRAINDICATED_IF', 'DOSAGE_ADJUST_IF'] \n  AND r.operator IN ['<', '<='] \n  AND r.value <= 60\nRETURN d.name AS 药品名称, type(r) AS 限制类型, r.value AS 阈值, \n       COALESCE(r.severity, r.adjustment) AS 详情\nORDER BY r.value",
+            "explanation": "查询eGFR≤60时所有用药限制（包括禁忌和减量）"
+        },
+        {
+            "id": 6,
+            "category": "药物分类查询",
+            "question": "有哪些SGLT2抑制剂？",
+            "cypher": "MATCH (d:Drug)-[:BELONGS_TO]->(c:Category {name: 'SGLT2抑制剂'})\nRETURN d.name AS 药品名称, d.max_daily_dose AS 最大日剂量",
+            "explanation": "查询SGLT2抑制剂分类下的所有药物"
+        },
+        {
+            "id": 7,
+            "category": "药物分类查询",
+            "question": "双胍类药物都有哪些？",
+            "cypher": "MATCH (d:Drug)-[:BELONGS_TO]->(c:Category {name: '双胍类'})\nRETURN d.name AS 药品名称",
+            "explanation": "查询双胍类药物列表"
+        },
+        {
+            "id": 8,
+            "category": "药物分类查询",
+            "question": "列出所有DPP-4抑制剂及其商品名",
+            "cypher": "MATCH (d:Drug)-[:BELONGS_TO]->(c:Category {name: 'DPP-4抑制剂'})\nOPTIONAL MATCH (d)-[:HAS_BRAND]->(b:Brand)\nRETURN d.name AS 通用名, COLLECT(b.name) AS 商品名",
+            "explanation": "查询DPP-4抑制剂的通用名和商品名"
+        },
+        {
+            "id": 9,
+            "category": "药物分类查询",
+            "question": "GLP-1受体激动剂有哪些品种？",
+            "cypher": "MATCH (d:Drug)-[:BELONGS_TO]->(c:Category {name: 'GLP-1受体激动剂'})\nRETURN d.name AS 药品名称",
+            "explanation": "查询GLP-1激动剂类药物"
+        },
+        {
+            "id": 10,
+            "category": "药物分类查询",
+            "question": "一共有多少种降糖药物类别？",
+            "cypher": "MATCH (c:Category)\nRETURN c.name AS 类别名称\nORDER BY c.name",
+            "explanation": "返回所有药物分类"
+        },
+        {
+            "id": 11,
+            "category": "疾病禁忌查询",
+            "question": "心力衰竭患者禁用哪些药物？",
+            "cypher": "MATCH (d:Drug)-[r:FORBIDDEN_FOR]->(dis:Disease)\nWHERE dis.name CONTAINS '心力衰竭'\nRETURN d.name AS 药品名称, r.severity AS 严重程度",
+            "explanation": "查询心力衰竭患者的禁用药物"
+        },
+        {
+            "id": 12,
+            "category": "疾病禁忌查询",
+            "question": "糖尿病酮症酸中毒患者不能用什么药？",
+            "cypher": "MATCH (d:Drug)-[r:FORBIDDEN_FOR]->(dis:Disease)\nWHERE dis.name CONTAINS '酮症酸中毒'\nRETURN d.name AS 药品名称, r.severity AS 严重程度",
+            "explanation": "查询酮症酸中毒禁用的药物"
+        },
+        {
+            "id": 13,
+            "category": "疾病禁忌查询",
+            "question": "肝功能不全患者用药有什么限制？",
+            "cypher": "MATCH (d:Drug)-[r:FORBIDDEN_FOR]->(dis:Disease)\nWHERE dis.name CONTAINS '肝功能' OR dis.name CONTAINS '肝病'\nRETURN d.name AS 药品名称, r.severity AS 严重程度, r.reason AS 原因",
+            "explanation": "查询肝功能不全相关的用药禁忌"
+        },
+        {
+            "id": 14,
+            "category": "疾病禁忌查询",
+            "question": "有严重感染的糖尿病患者禁用哪些药？",
+            "cypher": "MATCH (d:Drug)-[r:FORBIDDEN_FOR]->(dis:Disease)\nWHERE dis.name CONTAINS '感染'\nRETURN d.name AS 药品名称, r.severity AS 严重程度",
+            "explanation": "查询感染时的禁用药物"
+        },
+        {
+            "id": 15,
+            "category": "疾病禁忌查询",
+            "question": "妊娠期糖尿病患者用药限制？",
+            "cypher": "MATCH (d:Drug)-[r:FORBIDDEN_FOR]->(dis:Disease)\nWHERE dis.name CONTAINS '妊娠' OR dis.name CONTAINS '孕妇'\nRETURN d.name AS 药品名称, r.severity AS 严重程度",
+            "explanation": "查询妊娠期禁用的降糖药"
+        },
+        {
+            "id": 16,
+            "category": "复杂多跳查询",
+            "question": "二甲双胍有哪些禁忌症和注意事项？",
+            "cypher": "MATCH (d:Drug {name: '二甲双胍'})-[r]->(target)\nWHERE type(r) IN ['CONTRAINDICATED_IF', 'FORBIDDEN_FOR', 'REQUIRES_MONITORING', 'DOSAGE_ADJUST_IF']\nRETURN type(r) AS 关系类型, \n       target.name AS 目标名称, \n       r.severity AS 严重程度, \n       r.operator AS 运算符, \n       r.value AS 阈值,\n       r.adjustment AS 调整建议,\n       r.frequency AS 监测频率",
+            "explanation": "查询特定药物的所有相关限制和监测要求"
+        },
+        {
+            "id": 17,
+            "category": "复杂多跳查询",
+            "question": "SGLT2抑制剂类药物的禁忌症都有哪些？",
+            "cypher": "MATCH (c:Category {name: 'SGLT2抑制剂'})<-[:BELONGS_TO]-(d:Drug)\nMATCH (d)-[r]->(target)\nWHERE type(r) IN ['CONTRAINDICATED_IF', 'FORBIDDEN_FOR']\nRETURN d.name AS 药品名称, \n       type(r) AS 禁忌类型, \n       target.name AS 禁忌项, \n       COALESCE(r.operator + TOSTRING(r.value), r.severity) AS 详情",
+            "explanation": "查询某类药物的所有禁忌（包括指标和疾病）"
+        },
+        {
+            "id": 18,
+            "category": "复杂多跳查询",
+            "question": "格华止是什么药？它的禁忌症有哪些？",
+            "cypher": "MATCH (b:Brand {name: '格华止'})<-[:HAS_BRAND]-(d:Drug)\nOPTIONAL MATCH (d)-[r]->(target)\nWHERE type(r) IN ['CONTRAINDICATED_IF', 'FORBIDDEN_FOR']\nRETURN d.name AS 通用名, \n       COLLECT({type: type(r), target: target.name, details: r}) AS 禁忌列表",
+            "explanation": "通过商品名查询药物及其禁忌"
+        },
+        {
+            "id": 19,
+            "category": "复杂多跳查询",
+            "question": "哪些药物既禁用于心衰又禁用于肾功能不全？",
+            "cypher": "MATCH (d:Drug)-[:FORBIDDEN_FOR]->(dis1:Disease)\nWHERE dis1.name CONTAINS '心力衰竭'\nMATCH (d)-[r:CONTRAINDICATED_IF]->(m:Metric {name: 'eGFR'})\nWHERE r.operator = '<'\nRETURN d.name AS 药品名称, \n       r.value AS eGFR阈值, \n       '同时禁用于心衰和肾功能不全' AS 说明",
+            "explanation": "查询同时满足多个禁忌条件的药物"
+        },
+        {
+            "id": 20,
+            "category": "复杂多跳查询",
+            "question": "有哪些药物属于双胍类且需要监测肾功能？",
+            "cypher": "MATCH (d:Drug)-[:BELONGS_TO]->(c:Category {name: '双胍类'})\nMATCH (d)-[r:REQUIRES_MONITORING]->(m:Metric {name: 'eGFR'})\nRETURN d.name AS 药品名称, r.frequency AS 监测频率",
+            "explanation": "组合分类查询和监测要求查询"
+        }
+    ],
+    "prompt_template": {
+        "system": "你是一个专业的Cypher查询生成器。根据用户的自然语言问题，生成准确的Neo4j Cypher查询语句。\n\n## 图谱Schema:\n{schema}\n\n## 重要规则:\n1. 只生成只读查询（MATCH, RETURN），禁止使用 CREATE, DELETE, SET 等修改操作\n2. 使用中文作为返回字段的别名（AS）\n3. 合理使用 WHERE 子句进行过滤\n4. 适当使用 OPTIONAL MATCH 处理可能不存在的关系\n5. 对于模糊匹配使用 CONTAINS 关键字\n6. 返回结果时尽量包含有意义的属性",
+        "few_shot_format": "## 示例 {index}:\n问题: {question}\nCypher:\n```cypher\n{cypher}\n```\n解释: {explanation}\n\n",
+        "user_template": "## 用户问题:\n{user_question}\n\n请生成对应的Cypher查询语句（只返回Cypher代码，不要包含markdown标记）:"
+    }
+}
