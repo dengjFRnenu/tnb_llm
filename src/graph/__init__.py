@@ -4,6 +4,12 @@
 """
 
 from .text_to_cypher import TextToCypherEngine
+from .langchain_cypher import LangChainCypherRetriever, CypherResult, create_cypher_retriever
 from .cypher_generator import *
 
-__all__ = ["TextToCypherEngine"]
+__all__ = [
+    "TextToCypherEngine",
+    "LangChainCypherRetriever",
+    "CypherResult",
+    "create_cypher_retriever",
+]

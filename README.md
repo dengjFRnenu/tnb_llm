@@ -8,10 +8,17 @@
 
 ## ✨ 系统特性
 
-- **混合检索**: 向量检索 (BGE-M3) + 关键词检索 (BM25) + RRF 融合
-- **智能精排**: BGE-Reranker 语义相关性精排
-- **知识图谱查询**: Text-to-Cypher 自然语言转 Neo4j 查询
-- **数据融合**: 硬规则（KG）+ 软知识（RAG）智能合并
+### 核心能力
+- 🔍 **混合检索**: 向量检索 (BGE-M3) + 关键词检索 (BM25) + RRF 融合
+- 🎯 **智能精排**: BGE-Reranker 语义相关性精排
+- 📊 **知识图谱查询**: Text-to-Cypher 自然语言转 Neo4j 查询
+- 🔗 **数据融合**: 硬规则（KG）+ 软知识（RAG）智能合并
+
+### 智能诊疗 (NEW!)
+- 📋 **病例分析**: 从病历文本提取结构化患者画像
+- ⚠️ **风险检测**: 基于知识图谱检测用药禁忌
+- 💊 **决策融合**: 整合图谱规则和指南知识生成诊疗建议
+- 📝 **报告生成**: 带引用来源的临床报告
 
 ---
 
@@ -22,20 +29,29 @@ tnb_llm/
 ├── src/                         # 核心源代码
 │   ├── engine.py                # 检索总控引擎
 │   ├── data/                    # 数据处理模块
+│   │   └── guideline_parser.py  # 指南解析器
 │   ├── retrieval/               # 检索模块
-│   └── graph/                   # 知识图谱模块
+│   │   ├── hybrid.py            # 混合检索器
+│   │   └── reranker.py          # 重排序器
+│   ├── graph/                   # 知识图谱模块
+│   │   ├── text_to_cypher.py    # Text-to-Cypher 引擎
+│   │   └── langchain_cypher.py  # LangChain 增强检索
+│   └── agent/                   # 智能诊疗 Agent
+│       ├── patient_profile.py   # 患者画像模型
+│       ├── case_analyzer.py     # 病例分析器
+│       ├── risk_detector.py     # 风险检测器
+│       ├── decision_fusion.py   # 决策融合器
+│       └── dia_agent.py         # 主协调器
 ├── configs/                     # 配置文件
 │   ├── schema.json              # 图谱Schema
 │   └── few_shot_examples.json   # Text-to-Cypher示例
 ├── data/                        # 数据文件
 │   ├── raw/                     # 原始数据
 │   ├── processed/               # 处理后数据
-│   └── neo4j/                   # Neo4j相关
-├── scripts/                     # 工具脚本
-├── tests/                       # 测试代码
-├── examples/                    # 示例代码
-├── docs/                        # 文档
-└── chroma_db/                   # ChromaDB向量库
+│   └── neo4j/                   # Neo4j导入脚本
+├── api.py                       # FastAPI 服务接口
+├── chroma_db/                   # ChromaDB向量库
+└── docs/                        # 文档
 ```
 
 ---
@@ -49,124 +65,155 @@ cd /home/Jin.Deng/tnb_llm
 pip install -r requirements.txt
 ```
 
-### 2. 验证环境
+### 2. 启动 Neo4j
 
 ```bash
-python scripts/setup_check.py
+docker run -d --name neo4j-diabetes \
+  -p 7474:7474 -p 7687:7687 \
+  -e NEO4J_AUTH=neo4j/password123 \
+  neo4j:5.15.0
 ```
 
-### 3. 运行 Demo
+### 3. 导入知识图谱
 
 ```bash
-python examples/demo_retrieval.py
+python scripts/import_to_neo4j.py
 ```
 
-示例问题：
-- `eGFR小于30的患者不能使用哪些药物？`
-- `有哪些SGLT2抑制剂？`
-- `糖尿病患者的运动建议是什么？`
+### 4. 运行测试
+
+```bash
+# 测试 GraphRAG 引擎
+python -m src.engine
+
+# 测试 Dia-Agent
+python -m src.agent.dia_agent
+```
 
 ---
 
-## 💻 代码使用
+## 💻 使用方式
 
-### 基础示例
+### 方式一：Dia-Agent 智能诊疗 (推荐)
 
 ```python
-import sys
-sys.path.insert(0, '/home/Jin.Deng/tnb_llm')
-from src import GraphRAGEngine
+from src.agent import DiaAgent
 
-# 初始化引擎
+# 初始化 Agent
+agent = DiaAgent()
+
+# 完整诊疗咨询
+case = """
+患者男，55岁，2型糖尿病10年。
+当前用药：二甲双胍0.5g tid、恩格列净10mg qd
+检查：HbA1c 8.2%，eGFR 28 mL/min
+诊断：糖尿病肾病 CKD 4期
+"""
+
+report = agent.consult(case)
+print(report.to_markdown())
+
+# 关闭
+agent.close()
+```
+
+### 方式二：快速风险检查
+
+```python
+from src.agent import DiaAgent
+
+agent = DiaAgent(verbose=False)
+
+# 只需提供用药和关键指标
+risk_report = agent.quick_risk_check(
+    medications=["二甲双胍", "恩格列净"],
+    egfr=28,
+    complications=["糖尿病肾病"]
+)
+
+print(risk_report.to_text())
+```
+
+### 方式三：GraphRAG 检索引擎
+
+```python
+from src.engine import GraphRAGEngine
+
 engine = GraphRAGEngine()
 
-# 执行检索
 result = engine.retrieve("eGFR小于30的患者不能使用哪些药物？")
 
-# 查看结果
-print("策略:", "GraphRAG" if result['use_kg'] else "RAG Only")
-print("RAG文档数:", len(result['rag_results']))
-print("KG结果数:", len(result['kg_results']))
-print("\n最终Context:\n", result['merged_context'])
-```
-
-### 与 LLM 集成
-
-```python
-def call_llm(context, question):
-    """调用你的 LLM（如 Qwen, GPT 等）"""
-    prompt = f"{context}\n\n请回答: {question}"
-    # 调用 API...
-    return response
-
-# 使用 GraphRAG 检索 + LLM 生成
-query = "eGFR小于30能用二甲双胍吗？"
-result = engine.retrieve(query)
-answer = call_llm(result['merged_context'], query)
+print("检索策略:", "GraphRAG" if result['use_kg'] else "RAG Only")
+print("RAG结果:", len(result['rag_results']), "篇文档")
+print("KG结果:", len(result['kg_results']), "条记录")
+print("\n融合Context:\n", result['merged_context'])
 ```
 
 ---
 
-## ⚙️ 配置选项
+## 🌐 API 服务
 
-### 禁用知识图谱查询（仅 RAG）
+### 启动服务
 
-```python
-result = engine.retrieve(query, use_kg=False)
+```bash
+# 安装 FastAPI
+pip install fastapi uvicorn
+
+# 启动服务
+python api.py
 ```
 
-### 调整检索数量
+### API 端点
 
-```python
-result = engine.retrieve(
-    query,
-    hybrid_top_k=15,    # 初筛15篇
-    rerank_top_k=5      # 精排前5篇
-)
-```
-
-### 使用自定义 LLM 生成 Cypher
-
-```python
-def my_llm(prompt):
-    # 你的 LLM API 调用
-    return cypher_code
-
-result = engine.retrieve(query, llm_api_function=my_llm)
-```
-
----
-
-## 🔧 故障排查
-
-| 问题 | 解决方案 |
-|------|----------|
-| `ModuleNotFoundError` | `pip install -r requirements.txt` |
-| `ChromaDB collection not found` | `python src/data/guideline_parser.py` |
-| `Neo4j connection failed` | 参考 `docs/NEO4J_SETUP.md` |
-
----
-
-## 📊 性能参考
-
-| 场景 | 耗时 | 说明 |
+| 端点 | 方法 | 说明 |
 |------|------|------|
-| 纯 RAG 查询 | ~300ms | 不查知识图谱 |
-| GraphRAG 查询 | ~1.3s | 包含 Text-to-Cypher |
-| GPU 加速后 | ~600ms | Reranker 加速 |
+| `/` | GET | 健康检查 |
+| `/health` | GET | 组件状态 |
+| `/consult` | POST | 完整诊疗咨询 |
+| `/risk-check` | POST | 快速风险检查 |
+| `/drug-info` | POST | 药品禁忌查询 |
+
+访问 `http://localhost:8000/docs` 查看 API 文档。
+
+### 示例请求
+
+```bash
+curl -X POST "http://localhost:8000/risk-check" \
+  -H "Content-Type: application/json" \
+  -d '{"medications": ["二甲双胍"], "egfr": 25}'
+```
 
 ---
 
-## 📚 文档
+## 📊 数据资源
 
-- [快速入门](docs/QUICKSTART.md)
-- [Neo4j 配置](docs/NEO4J_SETUP.md)
-- [安装笔记](docs/INSTALL_NOTES.md)
-- [服务部署](docs/SERVER_DEPLOY.md)
-- [项目规划](docs/project.md)
+| 资源 | 数量 | 说明 |
+|------|------|------|
+| 指南文档 | 136篇 | 《中国糖尿病防治指南2024》分块 |
+| 药品节点 | 89个 | 糖尿病相关药品 |
+| 知识关系 | 421条 | 禁忌/适应症/分类等 |
+| Few-shot示例 | 20条 | Text-to-Cypher 训练数据 |
 
 ---
 
-## 📄 License
+## 🧪 技术栈
+
+- **向量模型**: BGE-M3, BGE-Reranker-v2-M3
+- **向量库**: ChromaDB
+- **图数据库**: Neo4j 5.x
+- **NLP**: jieba, FlagEmbedding
+- **框架**: Pydantic, FastAPI
+- **LLM集成**: 可选 (OpenAI/Claude/Qwen)
+
+---
+
+## 📖 文档
+
+- [项目需求文档](project_need.md)
+- [LangChain Cypher 使用指南](docs/langchain_cypher.md)
+
+---
+
+## 📝 License
 
 MIT License

@@ -159,27 +159,56 @@ class TextToCypherEngine:
         return cypher
     
     def _match_from_examples(self, user_question: str) -> Optional[str]:
-        """从示例库中匹配最相似的问题（简单关键词匹配）"""
-        # 简单实现：关键词匹配
-        best_match = None
-        max_overlap = 0
+        """从示例库中匹配最相似的问题（使用jieba分词和关键词权重）"""
+        import jieba
         
-        # 提取用户问题关键词
-        user_keywords = set(user_question.replace('？', '').replace('?', '').split())
+        # 重要关键词及其权重
+        KEYWORD_WEIGHTS = {
+            'eGFR': 3, 'egfr': 3, 'EGFR': 3,
+            '小于': 2, '<': 2, '大于': 2, '>': 2,
+            '禁用': 3, '禁忌': 3, '不能': 2, '不可': 2,
+            '药物': 2, '药品': 2, '哪些': 1,
+            '双胍': 3, 'SGLT2': 3, 'GLP-1': 3, '磺脲': 3,
+            '分类': 2, '类型': 2, '属于': 2,
+            '心力衰竭': 3, '肾功能': 3, '肝功能': 3,
+            '二甲双胍': 3, '格列': 2,
+            '30': 2, '45': 2, '60': 2,
+            '适应症': 2, '治疗': 2,
+        }
+        
+        def extract_keywords(text):
+            """提取关键词"""
+            words = list(jieba.cut(text))
+            # 添加原文中的特殊关键词
+            for kw in KEYWORD_WEIGHTS.keys():
+                if kw.lower() in text.lower():
+                    words.append(kw)
+            return set(words)
+        
+        def calculate_similarity(q1, q2):
+            """计算问题相似度（加权Jaccard）"""
+            kw1 = extract_keywords(q1)
+            kw2 = extract_keywords(q2)
+            
+            intersection_score = sum(KEYWORD_WEIGHTS.get(w, 1) for w in kw1 & kw2)
+            union_score = sum(KEYWORD_WEIGHTS.get(w, 1) for w in kw1 | kw2)
+            
+            return intersection_score / union_score if union_score > 0 else 0
+        
+        best_match = None
+        best_score = 0
         
         for example in self.examples:
-            example_keywords = set(example['question'].replace('？', '').replace('?', '').split())
-            overlap = len(user_keywords & example_keywords)
-            
-            if overlap > max_overlap:
-                max_overlap = overlap
+            score = calculate_similarity(user_question, example['question'])
+            if score > best_score:
+                best_score = score
                 best_match = example
         
-        if best_match and max_overlap >= 2:  # 至少2个关键词匹配
-            print(f"  ✅ 匹配到示例: {best_match['question']}")
+        if best_match and best_score >= 0.15:
+            print(f"  ✅ 匹配到示例 (相似度: {best_score:.2f}): {best_match['question'][:40]}...")
             return best_match['cypher']
         else:
-            print("  ⚠️  未找到匹配的示例")
+            print(f"  ⚠️  最佳匹配相似度不足 ({best_score:.2f})")
             return None
     
     @staticmethod

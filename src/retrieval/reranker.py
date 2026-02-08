@@ -45,13 +45,25 @@ class BGEReranker:
         # 计算相关性分数
         scores = self.reranker.compute_score(pairs, normalize=True)
         
-        # 如果只有一个结果，compute_score 返回单个值而非列表
-        if not isinstance(scores, list):
+        # 处理不同的返回类型（单值、列表、numpy数组）
+        import numpy as np
+        if isinstance(scores, np.ndarray):
+            scores = scores.tolist()
+        elif not isinstance(scores, list):
             scores = [scores]
+        
+        # 确保scores是一维列表
+        if isinstance(scores, list) and len(scores) > 0 and isinstance(scores[0], (list, np.ndarray)):
+            # 如果是二维数组，取第一列或展平
+            scores = [s[0] if hasattr(s, '__getitem__') else float(s) for s in scores]
         
         # 添加分数到文档
         for doc, score in zip(documents, scores):
-            doc['rerank_score'] = float(score)
+            # 确保score是Python标量
+            if hasattr(score, 'item'):
+                doc['rerank_score'] = score.item()
+            else:
+                doc['rerank_score'] = float(score)
         
         # 排序并返回 Top-K
         reranked = sorted(documents, key=lambda x: x['rerank_score'], reverse=True)

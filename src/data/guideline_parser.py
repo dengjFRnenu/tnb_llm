@@ -5,10 +5,14 @@ from chromadb.config import Settings
 from FlagEmbedding import BGEM3FlagModel
 import os
 import re
+from pathlib import Path
+
+# 项目根目录
+PROJECT_ROOT = Path(__file__).parent.parent.parent
 
 # 配置
-PDF_PATH = "中国糖尿病防治指南（2024版）.pdf"
-CHROMA_PATH = "./chroma_db"
+PDF_PATH = PROJECT_ROOT / "data" / "raw" / "中国糖尿病防治指南（2024版）.pdf"
+CHROMA_PATH = str(PROJECT_ROOT / "chroma_db")
 COLLECTION_NAME = "diabetes_guidelines_2024"
 
 def extract_tables_to_markdown(pdf_path):
