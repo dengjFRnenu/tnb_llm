@@ -42,9 +42,6 @@ from .decision_fusion import (
     EvidenceSource,
 )
 
-from .dia_agent import DiaAgent, create_dia_agent
-
-
 __all__ = [
     # 数据模型
     "PatientProfile",
@@ -78,4 +75,27 @@ __all__ = [
     # 主 Agent
     "DiaAgent",
     "create_dia_agent",
+    "DiaAgentFast",
+    "get_fast_agent",
 ]
+
+
+def __getattr__(name):
+    """对重量级模块使用延迟导入，减少包初始化耗时"""
+    if name in {"DiaAgent", "create_dia_agent"}:
+        from .dia_agent import DiaAgent, create_dia_agent
+        mapping = {
+            "DiaAgent": DiaAgent,
+            "create_dia_agent": create_dia_agent,
+        }
+        return mapping[name]
+
+    if name in {"DiaAgentFast", "get_fast_agent"}:
+        from .dia_agent_fast import DiaAgentFast, get_fast_agent
+        mapping = {
+            "DiaAgentFast": DiaAgentFast,
+            "get_fast_agent": get_fast_agent,
+        }
+        return mapping[name]
+
+    raise AttributeError(f"module 'src.agent' has no attribute '{name}'")

@@ -9,12 +9,21 @@ import chromadb
 from FlagEmbedding import BGEM3FlagModel
 from rank_bm25 import BM25Okapi
 import jieba
-from typing import List, Dict, Tuple
+from typing import List, Dict
 import numpy as np
+import threading
+from collections import OrderedDict
+from concurrent.futures import ThreadPoolExecutor
 
 
 class VectorRetriever:
     """向量检索器 - 基于 ChromaDB + BGE-M3"""
+
+    _model = None
+    _model_lock = threading.Lock()
+    _embedding_cache = OrderedDict()
+    _embedding_cache_lock = threading.Lock()
+    _embedding_cache_size = 256
     
     def __init__(self, chroma_path: str = "./chroma_db", collection_name: str = "diabetes_guidelines_2024"):
         """
@@ -25,10 +34,30 @@ class VectorRetriever:
             collection_name: 集合名称
         """
         print("🔧 初始化向量检索器...")
-        self.model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)
+        with VectorRetriever._model_lock:
+            if VectorRetriever._model is None:
+                VectorRetriever._model = BGEM3FlagModel('BAAI/bge-m3', use_fp16=True)
+        self.model = VectorRetriever._model
         self.client = chromadb.PersistentClient(path=chroma_path)
         self.collection = self.client.get_collection(name=collection_name)
         print("✅ 向量检索器就绪")
+
+    def _encode_query(self, query: str):
+        with VectorRetriever._embedding_cache_lock:
+            cached = VectorRetriever._embedding_cache.get(query)
+            if cached is not None:
+                VectorRetriever._embedding_cache.move_to_end(query)
+                return cached
+
+        query_embedding = self.model.encode([query])['dense_vecs'][0]
+
+        with VectorRetriever._embedding_cache_lock:
+            VectorRetriever._embedding_cache[query] = query_embedding
+            VectorRetriever._embedding_cache.move_to_end(query)
+            if len(VectorRetriever._embedding_cache) > VectorRetriever._embedding_cache_size:
+                VectorRetriever._embedding_cache.popitem(last=False)
+
+        return query_embedding
     
     def retrieve(self, query: str, top_k: int = 10) -> List[Dict]:
         """
@@ -41,8 +70,8 @@ class VectorRetriever:
         Returns:
             List of {id, document, metadata, score}
         """
-        # 查询向量化
-        query_embedding = self.model.encode([query])['dense_vecs'][0]
+        # 查询向量化（带缓存）
+        query_embedding = self._encode_query(query)
         
         # 检索
         results = self.collection.query(
@@ -66,6 +95,9 @@ class VectorRetriever:
 
 class KeywordRetriever:
     """关键词检索器 - 基于 BM25"""
+
+    _index_cache = {}
+    _index_lock = threading.Lock()
     
     def __init__(self, chroma_path: str = "./chroma_db", collection_name: str = "diabetes_guidelines_2024"):
         """
@@ -76,22 +108,34 @@ class KeywordRetriever:
             collection_name: 集合名称
         """
         print("🔧 初始化关键词检索器...")
-        
-        # 从 ChromaDB 加载所有文档
-        client = chromadb.PersistentClient(path=chroma_path)
-        collection = client.get_collection(name=collection_name)
-        
-        # 获取所有文档
-        all_data = collection.get()
-        self.documents = all_data['documents']
-        self.ids = all_data['ids']
-        self.metadatas = all_data['metadatas']
-        
-        # 分词并建立BM25索引
-        print(f"📄 对 {len(self.documents)} 篇文档分词...")
-        tokenized_corpus = [list(jieba.cut(doc)) for doc in self.documents]
-        self.bm25 = BM25Okapi(tokenized_corpus)
-        
+
+        cache_key = (chroma_path, collection_name)
+        cached = None
+        with KeywordRetriever._index_lock:
+            cached = KeywordRetriever._index_cache.get(cache_key)
+
+        if cached is None:
+            # 从 ChromaDB 加载所有文档
+            client = chromadb.PersistentClient(path=chroma_path)
+            collection = client.get_collection(name=collection_name)
+
+            # 获取所有文档
+            all_data = collection.get()
+            documents = all_data['documents']
+            ids = all_data['ids']
+            metadatas = all_data['metadatas']
+
+            # 分词并建立BM25索引
+            print(f"📄 对 {len(documents)} 篇文档分词...")
+            tokenized_corpus = [list(jieba.cut(doc)) for doc in documents]
+            bm25 = BM25Okapi(tokenized_corpus)
+
+            with KeywordRetriever._index_lock:
+                if cache_key not in KeywordRetriever._index_cache:
+                    KeywordRetriever._index_cache[cache_key] = (documents, ids, metadatas, bm25)
+                cached = KeywordRetriever._index_cache[cache_key]
+
+        self.documents, self.ids, self.metadatas, self.bm25 = cached
         print("✅ 关键词检索器就绪")
     
     def retrieve(self, query: str, top_k: int = 10) -> List[Dict]:
@@ -216,13 +260,14 @@ class HybridRetriever:
             融合后的检索结果
         """
         print(f"\n🔍 混合检索: {query}")
-        
+
         # 并行检索
-        print("  📊 向量检索中...")
-        vector_results = self.vector_retriever.retrieve(query, top_k=top_k)
-        
-        print("  📝 关键词检索中...")
-        keyword_results = self.keyword_retriever.retrieve(query, top_k=top_k)
+        print("  📊 向量检索 + 📝 关键词检索 并发执行...")
+        with ThreadPoolExecutor(max_workers=2) as executor:
+            vector_future = executor.submit(self.vector_retriever.retrieve, query, top_k)
+            keyword_future = executor.submit(self.keyword_retriever.retrieve, query, top_k)
+            vector_results = vector_future.result()
+            keyword_results = keyword_future.result()
         
         # RRF 融合
         print("  🔀 融合结果中...")

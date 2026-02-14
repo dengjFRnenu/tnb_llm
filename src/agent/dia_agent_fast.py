@@ -9,6 +9,7 @@ import sys
 from pathlib import Path
 from typing import Optional, Callable, Dict, Any, List
 import time
+import threading
 
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
@@ -27,11 +28,13 @@ class DiaAgentFast:
     
     _instance = None
     _initialized = False
+    _init_lock = threading.Lock()
     
     def __new__(cls, *args, **kwargs):
         """单例模式 - 避免重复加载模型"""
-        if cls._instance is None:
-            cls._instance = super().__new__(cls)
+        with cls._init_lock:
+            if cls._instance is None:
+                cls._instance = super().__new__(cls)
         return cls._instance
     
     def __init__(
@@ -39,48 +42,60 @@ class DiaAgentFast:
         llm_api: Callable[[str], str] = None,
         verbose: bool = False,
         skip_reranker: bool = True,  # 跳过 Reranker 加速
-        skip_rag: bool = False  # 跳过 RAG 检索
+        skip_rag: bool = False,  # 跳过 RAG 检索
+        llm_case_extraction: bool = False,  # 病例抽取是否调用 LLM
+        use_reflection: bool = False  # 病例抽取是否启用反思二次调用
     ):
-        # 避免重复初始化
-        if DiaAgentFast._initialized and self.llm_api is not None:
-            if llm_api:
-                self.llm_api = llm_api
-            return
-        
-        self.verbose = verbose
-        self.llm_api = llm_api
-        self.skip_reranker = skip_reranker
-        self.skip_rag = skip_rag
-        
-        self._log("🚀 初始化 Dia-Agent (快速版)...")
-        
-        t0 = time.time()
-        
-        # 1. 核心模块 - 必须加载
-        from src.agent.case_analyzer import CaseAnalyzer
-        from src.agent.risk_detector import RiskDetector
-        from src.agent.decision_fusion import DecisionFusion
-        
-        self.case_analyzer = CaseAnalyzer(llm_api=llm_api)
-        self.risk_detector = RiskDetector()
-        self.decision_fusion = DecisionFusion(llm_api=llm_api)
-        
-        # 2. 检索模块 - 可选
-        self.hybrid_retriever = None
-        self.reranker = None
-        
-        if not skip_rag:
-            from src.retrieval.hybrid import HybridRetriever
-            self.hybrid_retriever = HybridRetriever()
-            
-            if not skip_reranker:
-                from src.retrieval.reranker import BGEReranker
-                self.reranker = BGEReranker()
-        
-        t1 = time.time()
-        self._log(f"✅ 初始化完成 ({t1-t0:.1f}s)")
-        
-        DiaAgentFast._initialized = True
+        with DiaAgentFast._init_lock:
+            # 避免重复初始化
+            if DiaAgentFast._initialized:
+                if llm_api is not None:
+                    self.llm_api = llm_api
+                    self.decision_fusion.llm_api = llm_api
+                    if self.llm_case_extraction:
+                        self.case_analyzer.llm_api = llm_api
+                return
+
+            self.verbose = verbose
+            self.llm_api = llm_api
+            self.skip_reranker = skip_reranker
+            self.skip_rag = skip_rag
+            self.llm_case_extraction = llm_case_extraction
+            self.use_reflection = use_reflection
+
+            self._log("🚀 初始化 Dia-Agent (快速版)...")
+
+            t0 = time.time()
+
+            # 1. 核心模块 - 必须加载
+            from src.agent.case_analyzer import CaseAnalyzer
+            from src.agent.risk_detector import RiskDetector
+            from src.agent.decision_fusion import DecisionFusion
+
+            analyzer_llm = llm_api if llm_case_extraction else None
+            self.case_analyzer = CaseAnalyzer(
+                llm_api=analyzer_llm,
+                use_reflection=use_reflection
+            )
+            self.risk_detector = RiskDetector()
+            self.decision_fusion = DecisionFusion(llm_api=llm_api)
+
+            # 2. 检索模块 - 可选
+            self.hybrid_retriever = None
+            self.reranker = None
+
+            if not skip_rag:
+                from src.retrieval.hybrid import HybridRetriever
+                self.hybrid_retriever = HybridRetriever()
+
+                if not skip_reranker:
+                    from src.retrieval.reranker import BGEReranker
+                    self.reranker = BGEReranker()
+
+            t1 = time.time()
+            self._log(f"✅ 初始化完成 ({t1-t0:.1f}s)")
+
+            DiaAgentFast._initialized = True
     
     def _log(self, msg: str):
         if self.verbose:
@@ -96,14 +111,14 @@ class DiaAgentFast:
         3. 跳过 RAG 或简化检索
         4. 决策融合 (调用 LLM 生成建议)
         """
-        from src.agent.patient_profile import create_patient_profile
-        from src.agent.risk_detector import RiskReport
-        
         t0 = time.time()
         
         # 1. 病例分析
         self._log("📋 分析病历...")
-        profile = self.case_analyzer.analyze(case_text)
+        if self.llm_case_extraction:
+            profile = self.case_analyzer.analyze(case_text, use_reflection=self.use_reflection)
+        else:
+            profile = self.case_analyzer.extract_with_rules(case_text)
         t1 = time.time()
         self._log(f"  ✓ 病例分析完成 ({t1-t0:.1f}s)")
         

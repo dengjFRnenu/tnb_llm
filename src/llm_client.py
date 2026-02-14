@@ -8,6 +8,8 @@ LLM 客户端封装
 import os
 from typing import Optional, Callable
 from pathlib import Path
+from collections import OrderedDict
+import threading
 
 
 class LLMClient:
@@ -23,7 +25,9 @@ class LLMClient:
         api_key: str = None,
         base_url: str = None,
         temperature: float = 0.7,
-        max_tokens: int = 2000
+        max_tokens: int = 2000,
+        cache_enabled: Optional[bool] = None,
+        cache_max_size: int = 256
     ):
         """
         初始化 LLM 客户端
@@ -35,10 +39,18 @@ class LLMClient:
             base_url: API 基础 URL
             temperature: 温度参数
             max_tokens: 最大生成 token 数
+            cache_enabled: 是否启用请求缓存（None=读取环境变量）
+            cache_max_size: 缓存条目上限
         """
         self.provider = provider.lower()
         self.temperature = temperature
         self.max_tokens = max_tokens
+        if cache_enabled is None:
+            cache_enabled = os.getenv("LLM_CACHE_ENABLED", "true").strip().lower() in {"1", "true", "yes", "on"}
+        self.cache_enabled = cache_enabled
+        self.cache_max_size = int(os.getenv("LLM_CACHE_SIZE", str(cache_max_size)))
+        self._cache = OrderedDict()
+        self._cache_lock = threading.Lock()
         
         # 默认配置
         self.configs = {
@@ -149,8 +161,17 @@ class LLMClient:
         """
         if self.client is None:
             raise RuntimeError("LLM 客户端未初始化")
-        
+
+        cache_key = f"{self.provider}|{self.model}|{self.temperature}|{self.max_tokens}|{system or ''}|{prompt}"
+        if self.cache_enabled:
+            with self._cache_lock:
+                cached = self._cache.get(cache_key)
+                if cached is not None:
+                    self._cache.move_to_end(cache_key)
+                    return cached
+
         try:
+            response_text = ""
             if self.provider == "claude":
                 # Claude API
                 messages = [{"role": "user", "content": prompt}]
@@ -160,7 +181,7 @@ class LLMClient:
                     system=system or "你是一个专业的医学助手。",
                     messages=messages
                 )
-                return response.content[0].text
+                response_text = response.content[0].text
             else:
                 # OpenAI 兼容接口
                 messages = []
@@ -174,7 +195,16 @@ class LLMClient:
                     temperature=self.temperature,
                     max_tokens=self.max_tokens
                 )
-                return response.choices[0].message.content
+                response_text = response.choices[0].message.content
+
+            if self.cache_enabled:
+                with self._cache_lock:
+                    self._cache[cache_key] = response_text
+                    self._cache.move_to_end(cache_key)
+                    if len(self._cache) > self.cache_max_size:
+                        self._cache.popitem(last=False)
+
+            return response_text
         
         except Exception as e:
             print(f"❌ LLM 调用失败: {e}")
@@ -321,4 +351,3 @@ if __name__ == "__main__":
         print("     export GROQ_API_KEY=your-key")
         print("  3. 智谱 GLM: https://open.bigmodel.cn/")
         print("     export ZHIPU_API_KEY=your-key")
-

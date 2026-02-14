@@ -10,18 +10,14 @@ from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 import sys
 from pathlib import Path
+import os
 
 # 添加项目路径
 PROJECT_ROOT = Path(__file__).parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.agent import (
-    DiaAgent,
-    PatientProfile,
-    create_patient_profile,
-    RiskReport,
-    ClinicalReport
-)
+from src.agent.dia_agent_fast import DiaAgentFast
+from src.llm_client import create_llm_api
 
 
 # ============================================
@@ -111,14 +107,42 @@ class ClinicalReportResponse(BaseModel):
 # 全局 Agent 实例
 # ============================================
 
-_agent: Optional[DiaAgent] = None
+_agent = None
 
 
-def get_agent() -> DiaAgent:
+def _env_bool(name: str, default: bool) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+AGENT_MODE = os.getenv("DIA_AGENT_MODE", "fast").strip().lower()
+LLM_PROVIDER = os.getenv("DIA_LLM_PROVIDER", "siliconflow").strip()
+USE_FAST_AGENT = AGENT_MODE != "full"
+SKIP_RAG = _env_bool("DIA_SKIP_RAG", True)
+SKIP_RERANKER = _env_bool("DIA_SKIP_RERANKER", True)
+LLM_CASE_EXTRACTION = _env_bool("DIA_LLM_CASE_EXTRACTION", False)
+USE_REFLECTION = _env_bool("DIA_USE_REFLECTION", False)
+
+
+def get_agent():
     """获取或创建 Agent 实例"""
     global _agent
     if _agent is None:
-        _agent = DiaAgent(verbose=False)
+        llm_api = create_llm_api(LLM_PROVIDER)
+        if USE_FAST_AGENT:
+            _agent = DiaAgentFast(
+                llm_api=llm_api,
+                verbose=False,
+                skip_reranker=SKIP_RERANKER,
+                skip_rag=SKIP_RAG,
+                llm_case_extraction=LLM_CASE_EXTRACTION,
+                use_reflection=USE_REFLECTION
+            )
+        else:
+            from src.agent import DiaAgent
+            _agent = DiaAgent(llm_api=llm_api, verbose=False)
     return _agent
 
 
@@ -144,12 +168,13 @@ async def health_check():
     return {
         "status": "healthy",
         "neo4j_connected": agent.risk_detector.driver is not None,
+        "agent_mode": "fast" if USE_FAST_AGENT else "full",
         "components": {
             "case_analyzer": "ready",
             "risk_detector": "ready",
-            "hybrid_retriever": "ready",
-            "reranker": "ready",
-            "cypher_retriever": "ready",
+            "hybrid_retriever": "ready" if getattr(agent, "hybrid_retriever", None) else "disabled",
+            "reranker": "ready" if getattr(agent, "reranker", None) else "disabled",
+            "cypher_retriever": "ready" if hasattr(agent, "cypher_retriever") else "disabled",
             "decision_fusion": "ready"
         }
     }

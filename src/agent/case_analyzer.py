@@ -97,14 +97,16 @@ class CaseAnalyzer:
 如果发现任何遗漏或错误，请返回修正后的完整 JSON。如果没有问题，直接返回原 JSON。
 只返回 JSON，不要解释："""
 
-    def __init__(self, llm_api: Callable[[str], str] = None):
+    def __init__(self, llm_api: Callable[[str], str] = None, use_reflection: bool = True):
         """
         初始化病例分析器
         
         Args:
             llm_api: LLM API 调用函数 (接收 prompt, 返回响应文本)
+            use_reflection: 默认是否开启反思二次提取
         """
         self.llm_api = llm_api
+        self.use_reflection = use_reflection
         
         # 加载药品别名映射
         self.drug_aliases = self._load_drug_aliases()
@@ -173,13 +175,13 @@ class CaseAnalyzer:
         except:
             return None
     
-    def analyze(self, case_text: str, use_reflection: bool = True) -> PatientProfile:
+    def analyze(self, case_text: str, use_reflection: Optional[bool] = None) -> PatientProfile:
         """
         分析病历文本，提取患者画像
         
         Args:
             case_text: 病历文本
-            use_reflection: 是否使用反思提示词进行二次校验
+            use_reflection: 是否使用反思提示词进行二次校验（None=使用初始化默认值）
         
         Returns:
             PatientProfile 对象
@@ -187,6 +189,9 @@ class CaseAnalyzer:
         if not self.llm_api:
             print("⚠️ 未配置 LLM API，使用规则提取")
             return self._rule_based_extraction(case_text)
+
+        if use_reflection is None:
+            use_reflection = self.use_reflection
         
         print("🔍 [步骤1] LLM 提取病历信息...")
         
@@ -217,6 +222,10 @@ class CaseAnalyzer:
         
         # 转换为 PatientProfile
         return self._dict_to_profile(extracted)
+
+    def extract_with_rules(self, case_text: str) -> PatientProfile:
+        """显式使用规则提取（快速路径）"""
+        return self._rule_based_extraction(case_text)
     
     def _rule_based_extraction(self, case_text: str) -> PatientProfile:
         """基于规则的简单提取（当无 LLM 时使用）"""
